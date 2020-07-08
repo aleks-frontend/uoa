@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="global.css">
+    
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/overflows.css">
+    
+    <style>
+      .test {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/2796d57cb6edfbe1a9810fbd57d84234/a4-flyer-ss%20A%202.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        opacity: 0.7;
+        pointer-events: none;
+      }
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css');
+
+      body {
+        font-family: "Plantin MT Std", sans-serif;
+        background: #ffffff;
+        color: #252525;
+      }
+
+      h1, .h1, 
+      h2, .h2, 
+      h3, .h3, 
+      h4, .h4 {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-weight: bold;
+        line-height: 1.1em;
+      }
+
+      h1, .h1 {
+        font-size: 70pt;
+        line-height: 0.9em;
+        text-transform: uppercase;
+        color: {{{ account.colors.dark-blue }}};
+      }
+
+      h2, .h2 {
+        font-size: 10.5pt;
+        line-height: 12pt;
+        color: {{{ account.colors.primary }}};
+        margin: 2mm 0 1.5mm;
+      }
+
+      h3, .h3 {
+        font-size: 9pt;
+        line-height: 10.5pt;
+        margin: 1.5mm 0 1.5mm;
+      }
+
+      h4, .h4 {
+        font-size: 7.5pt;
+        line-height: 9pt;
+        margin: 1mm 0 1.5mm;
+      }
+
+      p, ul, ol {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0 0 1.5mm;
+      }
+
+      ol li, 
+      ul li {  
+        padding-left: 5pt;
+        padding-bottom: 1.5mm;
+        position: relative;
+      }
+
+      ol li::before,
+      ul li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #D40000;
+      }
+
+      a {
+        font-weight: bold;
+        text-decoration: none;
+        color: inherit !important;
+      }
+
+      .text-red { color: #D40000; }
+      .text-dark-blue { color: {{{ account.colors.dark-blue }}}; }
+
+      .image-container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .wrapper { 
+        display: -webkit-box; 
+        display: -ms-flexbox; 
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;  
+        height: 100%;
+        padding: 5mm;
+        position: relative;
+      }
+
+      .top {    
+        height: 82mm;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      .logo-wrapper {
+        padding: 5mm 7mm 5mm 5mm;
+      }
+      
+      .logo-wrapper.hide{
+        display: none !important;
+      }
+
+      .logo {
+        width: 100pt;
+        height: 75pt;  
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg');  
+      }
+
+      .logo.logo-black {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f51d18f3be6ad6a13b1bc40750f9201a/adelaide-logo-black.svg');
+      }
+
+      .overlay {
+        background: rgba(167,169,172, 0.8);
+        mix-blend-mode: multiply;
+      }
+      
+    
+      
+
+      .overlay.overlay-top-left {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 18%, 50mm 18%, 50mm 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 18%, 50mm 18%, 50mm 100%, 0 100%);
+      }
+
+      .overlay.overlay-top-right {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 83% 100%, 83% 18%, 0 18%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 83% 100%, 83% 18%, 0 18%);
+      }
+
+      .overlay.overlay-bottom-right {
+        -webkit-clip-path: polygon(86.7% 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 15mm), calc(100% - 25mm) calc(100% - 15mm), calc(100% - 25mm) 0);
+        clip-path: polygon(86.7% 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 15mm), calc(100% - 25mm) calc(100% - 15mm), calc(100% - 25mm) 0);
+      }
+
+      .overlay.overlay-bottom-left {
+        -webkit-clip-path: polygon(0 0, 50mm 0, 50mm calc(100% - 15mm), 100% calc(100% - 15mm), 100% 100%, 0 100%);
+		clip-path: polygon(0 0, 50mm 0, 50mm calc(100% - 15mm), 100% calc(100% - 15mm), 100% 100%, 0 100%);
+      }
+
+      .hero-image {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        width: auto;
+        background-color: #D1D3D4; 
+      }
+
+      .bottom {
+        height: 205mm;
+        padding: 5mm;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      .header-wrapper {
+        padding: 8mm 0 5mm 0;
+        border-bottom: solid 4pt {{{ account.colors.dark-blue }}};
+      }
+
+      .header {
+        margin: 0;
+        line-height: 0.88571em;
+        max-height: 1.8em;
+      }
+
+      .subhead {
+        font-family: "Plantin MT Std", sans-serif;
+        font-weight: normal;
+        text-decoration: underline;
+        max-height: 2.4em;
+      }
+
+      .intro {
+        font-family: "Plantin MT Std", sans-serif;  
+        font-weight: normal;
+        font-size: 16pt;
+        line-height: 19pt;
+      }
+
+      .copy {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;  
+        margin: 8mm 0 9mm;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .flex-container:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      .copy h1 {
+        font-family: "Plantin MT Std", sans-serif;  
+        font-weight: 600;
+        font-size: 15pt;
+        line-height: 19pt;
+        text-transform: none;
+        color: {{{ account.colors.primary }}};
+        margin-bottom: 6mm;
+        letter-spacing: -0.3px;
+      }
+
+      .multi-columns {  
+        -webkit-column-gap: 4mm;  
+        column-gap: 4mm;  
+        position: relative;  
+      }
+
+      .multi-columns.two-columns {  
+        -webkit-column-gap: 8mm;  
+        column-gap: 8mm;  
+      }
+
+      .enquiries-container {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 48%;
+      }
+
+      .enquiries h2 {
+        color: {{{ account.colors.dark-blue }}} !important;
+        text-transform: uppercase !important;
+        font-size: 12pt !important;
+        line-height: 12pt !important;
+        font-weight: bold !important;
+        margin: 0 0 4.5mm 0 !important;
+      }
+
+
+      .three-columns .enquiries-container {
+        width: 32%;
+      }
+
+      .enquiries {
+        font-family: "Bureau Grot Condensed", sans-serif;
+      }
+
+      .enquiries {
+        margin: 0;
+        padding: 0;
+        font-family: "Bureau Grot Condensed", sans-serif;
+      }
+      .enquiries h2 {  
+        color: #FEFEFF;
+        text-transform: uppercase;
+        font-size: 12pt;
+        line-height: 12pt;
+        font-weight: bold;
+        margin: 0 0 4.5mm 0
+      }
+
+      .line {
+        border-top: 1pt solid {{{ account.colors.dark-blue }}};
+        width: 100%;
+      }
+
+      .enquiry {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: 300 !important;
+        font-size: 8pt !important;
+        padding-top: 6pt !important;
+        padding-bottom: 2pt !important;
+        letter-spacing: 0.15px !important;
+      }
+
+      .enquiries .enquiry:first-of-type {
+        font-weight: normal;
+        padding-bottom: 2pt !important;
+        padding-top: 0 !important;
+        letter-spacing: 0.15px !important;
+      }
+
+      .enquiry label {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .enquiry i {
+        display: inline-block;
+        width: 3.96mm;
+        height: 3.96mm;  
+        margin-right: 1.5mm;
+        flex-shrink: 0;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .enquiry.no-icon {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        font-size: 8pt;
+        line-height: 9pt;
+        margin: 0;
+      }
+
+      .enquiry.no-icon label {
+        margin-right: 1mm; 
+      }
+
+      .enquiry.has-icon.enquiry.has-icon {
+        display: flex;
+        align-items: flex-end;
+        margin: 0;
+        line-height: 9pt;
+        padding-top: 2.3pt !important;
+        padding-bottom: 3.5pt !important;
+      }
+
+      .enquiry.has-icon span {
+        font-size: 8pt;
+        line-height: 7.5pt;
+        letter-spacing: 0.2px;
+        margin: 0;
+        padding: 0;
+      }
+
+      i.adelaide { background-image: url('icon-website.svg'); }
+      i.facebook { background-image: url('icon-facebook.svg'); }
+      i.twitter { background-image: url('icon-twitter.svg'); }
+      i.snapchat { background-image: url('icon-snapchat.svg'); }
+      i.instagram { background-image: url('icon-instagram.svg'); }
+      i.wechat { background-image: url('icon-wechat.svg'); }
+      i.weibo { background-image: url('icon-weibo.svg'); }
+
+      .enquiries {
+        margin-bottom: 7pt;
+      }
+
+      .url {
+        font-size: 22.5pt;
+        line-height: 0.8em;
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
+
+      .code {
+        font-family: "Bureau Grot", sans-serif; 
+        font-size: 6.5pt;
+        line-height: 8pt;
+        font-weight: 300;
+        margin-top: 8pt;
+      }
+
+      /**Theme-B*/
+      .theme-theme-b .logo-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        padding: 9mm 7mm;
+      }
+      
+      .theme-theme-b .overlay.overlay-top-right {
+        -webkit-clip-path: polygon(0 0, 0% 0, 0% 0%, 0% 0%, 0% 0%, 0 0%);
+        clip-path: polygon(0 0, 0% 0, 0% 0%, 0% 0%, 0% 0%, 0 0%);
+      }
+
+      /**Print*/
+      .crop .wrapper {
+        padding: 8mm;
+      }
+
+      .flex-container > *:last-child, .flex-container token-value > *:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      .flex-container h2 {
+        font-size: 10.5pt !important;
+        line-height: 12pt !important;
+        margin: 0 !important;
+        padding: 2mm 0 1.5mm 0 !important;
+      }
+
+      .flex-container h3 {
+        font-size: 9pt;
+        line-height: 10.5pt;
+        margin: 0;
+        padding: 1.5mm 0;
+      }
+
+      .flex-container h4 {
+        font-size: 7.5pt !important;
+        line-height: 9pt !important;
+        margin: 0 !important;
+        padding: 1mm 0 1.5mm 0 !important;
+      }
+
+      .flex-container p {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0;
+        padding: 0 0 1.5mm 0;
+      }
+
+      p {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0;
+        padding: 0 0 1.5mm 0;
+      }
+      
+      /* Caption Additions 02/12/18 - LM */
+      .caption {
+        margin: 4mm 0 7mm 0; 
+      }
+      .caption__text {
+       	font-size: 7.5pt; 
+        font-style: italic;
+        padding: 0; 
+        line-height: 8.5pt;
+      }     
+      
+      .enquiries a, .body-copy a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="page theme-{{uoa-theme}}{{^uoa-theme}}b{{/uoa-theme}}">
+      <div class="bleed">
+        <div class="fit">
+          <!--<div class="test"></div>-->
+          <div class="wrapper">
+            <div class="top">              
+              <div class="logo-wrapper {{{logo-toggle}}}">
+                <div class="logo logo-{{logo-color}}{{^logo-color}}white{{/logo-color}} contain"></div>
+              </div>
+              <div class="hero-image image-container">
+                {{{hero-image}}}
+                <div class="fit overlay overlay-{{ hero-image-overlay-theme_b }}{{^hero-image-overlay-theme_b}}top-left{{/hero-image-overlay-theme_b}}"></div>                
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="header-wrapper">
+                <div class="header h1 text-dark-blue" data-max-line="2" style="font-size: {{header-font-size-2}}{{^header-font-size-2}}65{{/header-font-size-2}}pt;">
+                  <div class="inner">
+                    {{{ header }}}
+                  </div>
+                </div>
+              </div>
+              <div class="copy">
+                <div class="inner multi-columns {{uoa-layout}}{{^uoa-layout}}two{{/uoa-layout}}-columns">
+                  <div class="enquiries-container">
+                    <div class="enquiries">
+                      {{#collection.further-information-collection}}
+                      <h2>{{{ table-name }}}</h2>
+                      {{#address}}
+                      <p class="enquiry">                        
+                        <span>{{{ address }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/address}}
+
+                      {{#enquiries}}
+                      <p class="enquiry">       
+                        <label>Enquiries</label>
+                        <span>{{{ enquiries }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/enquiries}}
+
+                      {{#telephone}}
+                      <p class="enquiry">       
+                        <label>Telephone</label>
+                        <span>{{{ telephone }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/telephone}}
+
+                      {{#free-call}}
+                      <p class="enquiry">       
+                        <label>Free Call</label>
+                        <span>{{{ free-call }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/free-call}}
+
+                      {{#adelaide}}
+                      <p class="enquiry has-icon">
+                        <i class="adelaide"></i>
+                        <span>{{{ adelaide }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/adelaide}}
+
+                      {{#facebook}}
+                      <p class="enquiry has-icon">
+                        <i class="facebook"></i>
+                        <span>{{{ facebook }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/facebook}}
+
+                      {{#twitter}}
+                      <p class="enquiry has-icon">
+                        <i class="twitter"></i>
+                        <span>{{{ twitter }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/twitter}}
+
+                      {{#snapchat}}
+                      <p class="enquiry has-icon">
+                        <i class="snapchat"></i>
+                        <span>{{{ snapchat }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/snapchat}}
+
+                      {{#instagram}}
+                      <p class="enquiry has-icon">
+                        <i class="instagram"></i>
+                        <span>{{{ instagram }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/instagram}}
+
+                      {{#wechat}}
+                      <p class="enquiry has-icon">
+                        <i class="wechat"></i>
+                        <span>{{{ wechat }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/wechat}}
+
+                      {{#weibo}}
+                      <p class="enquiry has-icon">
+                        <i class="weibo"></i>
+                        <span>{{{ weibo }}}</span>
+                      </p>
+                      <div class="line"></div>   
+                      {{/weibo}}
+
+                      {{/collection.further-information-collection}}
+                    </div>
+                    <div class="code">Outfit Job No: <span data-project-code></span><!--{{{outfit-job-no}}}--> CRICOS 00123M</div>
+                  </div>
+                  <div class="column-content">
+                  {{# collection.uoa-text-image }}
+
+                    {{#block.uoa-copy-block}}
+                      <div class="body-copy">{{{ uoa-copy }}}</div>
+                    {{/block.uoa-copy-block}}
+                    {{#block.uoa-image-block}}
+                      <img src="{{{ uoa-images }}}">
+                      <div class="caption">
+                        <p class="caption__text" data-limit="3">{{{ caption }}}</p>
+                      </div>
+                    {{/block.uoa-image-block}}
+
+                  {{/ collection.uoa-text-image }}
+                  </div>                  
+                </div>
+              </div>
+              {{#url}}
+              <h2 class="url text-dark-blue">{{{url}}} {{^url}}adelaide.edu.au{{/url}}</h2>
+              {{/url}}
+            </div>                        
+          </div>
+        </div>          
+      </div>
+    </div>        
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed){
+        bleed.style.cssText = !!window.showCrop ?
+          'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        :
+        'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+      });
+
+      /*
+      *  Include this Snippet to Enforce Text lockups and line limits
+      *  NOTES 
+      *   - This requires base.css as it utilises overflow clss styles.
+      *   - Your element must have an explicit line-heights set
+      */
+
+      // Grab all nodes to be checked
+      var nodesToCheck = document.querySelectorAll('[data-limit]');
+
+      // Set up our Observables
+      var lineObservable = new ResizeObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          checkLimitedText(entry.target);
+        })
+      });  
+
+      // Observe All the Nodes
+      nodesToCheck.forEach(function(node) {
+        lineObservable.observe(node);      
+      });
+
+      function checkLimitedText(node) {
+        // Check the line limit set   
+        const limit = node.getAttribute('data-limit');
+        // Count the amount of lines currently in the element
+        const lines = countElementLines(node); 
+        if (lines > limit) {
+          node.classList.add("overflow");
+        } 
+        else {
+          node.classList.remove("overflow");
+        }
+      }
+      // Calculates the amount lines in a node
+      // based on the css line-height value
+      function countElementLines(node) {
+        const height = node.clientHeight;
+        const lineHeight = parseFloat(window.getComputedStyle(node).getPropertyValue('line-height'));
+        const lines = Math.ceil(height / lineHeight);
+        return lines;
+      }
+
+      function setTextContainerHeight() {
+        var textContainer = document.querySelector('.copy');
+        var flexContainer = document.querySelector('.flex-container');
+
+        flexContainer.style.height = 'auto';
+
+        var textContainerBounds = textContainer.offsetHeight;
+        if (textContainer.querySelector('.inner').classList.contains('three-columns')) {
+          var columnHeight = textContainerBounds * 3;  
+        } else {
+          var columnHeight = textContainerBounds * 2;
+        }
+
+        flexContainer.style.height = columnHeight + 'px';
+
+      }
+
+      // Column Checker
+      function checkColumnOverflow(contentParent, contentWrapper) {
+        // Grab the Container which houses the columned content
+        // Grab Parent Boundaries
+        var parentRect = contentParent.getBoundingClientRect();
+
+        // Check to see if we are displaying any contact Details
+        var contactDetails = document.querySelector(".enquiries");
+        var contactRect = contactDetails.getBoundingClientRect();        
+
+        var heightBoundary = parentRect.height - contactRect.height;
+
+        // Grab All the Children
+        // We need to see if any nodes either ocupy the same space as contact or are outside the container.
+        var pageChildren = contentWrapper.children;
+
+        // Iterate through children checking against Boundaries
+        for(var i = 0; i < pageChildren.length; i++) {
+          var child = pageChildren.item(i);
+          var childRects = child.getClientRects();
+
+          // Loop Through Each Rect and Check its location
+          for(var j = 0; j < childRects.length; j++) {
+            var rect = childRects.item(j);
+            // Check to see if we are in the last column
+            if(Math.round(rect.right) == Math.round(parentRect.right)) {
+              // Check if we are taller than the allowed container
+              // OR Check if we Finish inside the Contact Us
+              if(rect.height > heightBoundary) {   
+                overflowOn(contentParent.parentNode);
+                return;
+              } // End If
+              else if(rect.bottom > contactRect.top && contactRect.top != 0) {
+                overflowOn(contentParent.parentNode);
+                return;
+              } // End Else If
+            } // End If
+          } // End For
+        } // End For
+
+        // If we get to this point without returning we have no outliers so we should remove overflow
+        contentParent.parentNode.classList.remove('overflow');
+      }
+
+      function overflowOn(node) {
+        if(node.classList.contains('overflow')) { return }
+        // If not add then return
+        node.classList.add('overflow');
+        return;            
+      }
+
+      // Grab the Token Value which holds all our dynamic content
+      var tokenValue = document.querySelector(".column-content token-value");
+
+      // FOR TEMPLATE TESTING
+      //var tokenValue = document.querySelector(".column-content");
+
+      // Grab the Container which is used for bounds
+      var contentParent = document.querySelector(".inner.multi-columns");
+
+      // Set up Our Observable to fire a checkLastPage
+      var tokenObserver = new MutationObserver(debounce(function () {
+        checkColumnOverflow(contentParent, tokenValue);
+      }, 250));
+
+
+      // Attach Observable to Token Value and its children
+      tokenObserver.observe(tokenValue, { childList: true });
+
+      // Javascript Debounce
+      // https://davidwalsh.name/javascript-debounce-function
+
+      // Returns a function, that, as long as it continues to be invoked, will not
+      // be triggered. The function will be called after it stops being called for
+      // N milliseconds. If `immediate` is passed, trigger the function on the
+      // leading edge, instead of the trailing.
+      function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+          var context = this, args = arguments;
+          var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) func.apply(context, args);
+        };
+      };
+
+    </script>   
+    <script src="prefixfree.js"></script>
+
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/char-limit.js" type="text/javascript"></script>
+	<script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/max-height-check.js" type="text/javascript"></script>
+	<script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/max-line-check.js" type="text/javascript"></script>
+	<script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/overflows.js" type="text/javascript"></script>
+
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/projectCode.1.0.0.js"></script>
+    <script>window.setProjectCode('[ID]');</script>
+  </body>
+</html>
