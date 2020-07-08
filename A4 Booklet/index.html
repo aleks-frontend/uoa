@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="global.css">
+
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css">
+
+    <style>
+
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css');
+
+      .page { background-color: white !important; }
+
+      a {
+        color: {{{account.colors.primary }}};
+        text-decoration: none !important;
+      }
+
+      body {
+        font-family: "Plantin MT Std", sans-serif;
+        color: #252525;
+      }
+
+      h1, h2, h3, h4 {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-weight: bold;  
+        line-height: 1.2em;
+        margin: 0.25em 0 0.5em;
+      }
+
+
+
+      h1 {
+        font-size: 39pt;
+        line-height: 0.9em;
+        text-transform: uppercase;
+        margin: 0 0 0.3em;
+        color: {{{ account.colors.dark-blue }}};
+      }
+
+      h2 {
+        font-size: 10.5pt;
+        color: {{{ account.colors.primary }}};
+      }
+
+      h3 {
+        font-size: 9pt;
+      }
+
+      h4 {
+        font-size: 7.5pt;
+      }
+
+      ul, ol {
+        font-size: 8.5pt; 
+        margin: 0.25em 0 0.5em;
+      }
+
+      ol li, 
+      ul li {  
+        padding-left: 5pt;
+        margin: 0.25em 0 0.5em;
+        position: relative;
+      }
+
+      ol li::before,
+      ul li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #D40000;
+      }
+
+      a {
+        font-weight: bold;
+        color: inherit !important;
+      }
+
+      table {
+        margin: 0 0 4mm 0;
+        width: 100%;
+      }
+
+      th {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        color: {{{ account.colors.dark-blue }}};
+        font-size: 12pt;
+        line-height: 14pt;
+        font-weight: bold;  
+      }
+
+      td {
+        font-family: "Plantin MT Std", sans-serif;  
+        font-size: 7.5pt;
+        line-height: 9pt;
+        font-weight: normal;  
+      }
+
+      th, td {
+        border-bottom: solid 1pt #D40000;
+      }
+
+      td {
+        padding: 2pt 2pt 1pt 2pt;
+      }
+
+      tr th:first-of-type {
+        padding-left: 0 !important;
+      }
+
+      tr td:first-of-type {
+        padding-left: 0;
+      }
+
+      th + th, td + td {
+        padding-left: 6pt;
+        border-left: solid 1pt #D40000;
+      }
+
+      span {
+        word-break: break-all;
+      }  
+
+      .front.page .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/38a118fec956a611658e16a507d3dbde/newcol-1.png');
+      }
+      .internal.page .two-columns .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/30635acad18ed421a63e1ccdbe11ef00/A4%20booklet_2%20column2.png');
+      }
+      .internal.page .three-columns .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3c92ec5283c530a6bd151f81d6c96286/A4%20booklet_3%20column2.png');
+      }
+      .back.page .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/804882c41ca651065ebdbddfc258bb1b/newcol-14.png');
+      }
+      .placeholder {
+        display: block;
+        position: absolute;
+        opacity: .3;
+        z-index: 2;
+        top: 3mm;
+        bottom: 3mm;
+        left: 3mm;
+        right: 3mm;
+        background-size: contain;
+        background-position: center;
+        pointer-events: none;
+      }
+      .overlay.overlay-bottom-right {
+        clip-path: polygon(81.5% 0, 100% 0, 100% 100%, 0 100%, 0 74.5%, 86.5% 74.5%, 86.5% 0);
+      }
+      .hero-image {
+        height: 500pt;
+      }
+      .url {
+        color: {{{ account.colors.dark-blue }}};
+        position: absolute;
+        line-height: 0.8em;
+        bottom: 4pt;
+        left: 11pt;
+        font-size: 22pt;
+      }
+      }
+      .header {
+        line-height: 0.9em;
+      }
+
+
+      .enquiries {
+        margin: 0;
+        padding: 0;
+        font-family: "Bureau Grot Condensed", sans-serif;
+      }
+      .enquiries h2 {  
+        color: #FEFEFF;
+        text-transform: uppercase;
+        font-size: 12pt;
+        line-height: 12pt;
+        font-weight: bold;
+        margin: 0 0 4.5mm 0
+      }
+
+      .line {
+        border-top: 1pt solid white;
+        width: 100%;
+      }
+
+      .enquiry {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: normal;
+        font-size: 8pt !important;
+        padding-top: 6pt !important;
+        padding-bottom: 2pt !important;
+        letter-spacing: 0.15px !important;
+      }
+
+      .enquiries .enquiry:first-of-type {
+        font-weight: normal;
+        padding-bottom: 2pt !important;
+        padding-top: 0 !important;
+        letter-spacing: 0.15px !important;
+      }
+
+      .enquiry label {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .enquiry i {
+        display: inline-block;
+        width: 3.96mm;
+        height: 3.96mm;  
+        margin-right: 1.5mm;
+        flex-shrink: 0;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .enquiry.no-icon {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        font-size: 8pt;
+        line-height: 9pt;
+        margin: 0;
+      }
+
+      .enquiry.no-icon label {
+        margin-right: 1mm; 
+      }
+
+      .enquiry.has-icon.enquiry.has-icon {
+        display: flex;
+        align-items: flex-end;
+        margin: 0;
+        line-height: 9pt;
+        padding-top: 2.3pt !important;
+        padding-bottom: 3.5pt !important;
+      }
+
+      .enquiry.has-icon span {
+        font-size: 8pt;
+        line-height: 7.5pt;
+        letter-spacing: 0.2px;
+        margin: 0;
+        padding: 0;
+      }
+
+      i.adelaide { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3412e04b3d494144ddb399f4f0309057/website.svg'); }
+      i.facebook { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f7d0270fe4b54a823c0be9c7e08277e2/facebook.svg'); }
+      i.twitter { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3707beea99b31d7cf1dbefbe6cc54107/twitter.svg'); }
+      i.snapchat { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3841d72df3ce3f80072bfb29f4c03e16/snapchat.svg'); }
+      i.instagram { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/72c56c9b1334af6ae08ccbad2f19f59f/instagram.svg'); }
+      i.wechat { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/52f3543145113d459e2e90c55e1880bd/wechat.svg'); }
+      i.weibo { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/37266b3a414e7a71a6daf9eadb24fd4c/weibo.svg'); }
+
+      .enquiries {
+        margin-bottom: 7pt;
+      }
+
+      .outfit {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: normal;
+        font-size: 6.5pt;
+        margin-bottom: 12pt;
+        letter-spacing: 0.1px; }
+
+      .disclaimer {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: normal;
+        line-height: 7.5pt;
+        margin-bottom: 18pt;
+        font-size: 6pt;}
+
+      .disclaimer .lead {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 8pt;
+        line-height: 7.5pt;
+      }
+
+      .logo-south {
+        position: absolute;
+        bottom: 47.5pt;
+        right: 52.5pt;
+        width: 66pt;
+        height: 24pt;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/66e8c370d53f798fcd65e95454df0e61/logo-south.svg');
+      }
+      .center {
+        background: {{{ account.colors.dark-blue }}};
+        font-family: "Bureau Grot Condensed", sans-serif;
+        color: white;
+        position: absolute;
+        bottom: 28pt;
+        left: 37pt;
+        width: 28%;
+      }
+      .quote-section p {
+        font-weight: 600;
+        color: {{{ account.colors.dark-blue }}};
+      }
+      .quote {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-size: 14pt;
+        line-height: 17pt;
+        font-weight: bold;
+        margin: 0.25em 0 0.5em;
+      }
+      .quote-section {
+        border: solid 5pt #FD000B;
+        padding: 5.7mm 6.5mm 5.7mm 5.5mm;
+        margin: 10pt 0 14pt 0;
+      }
+      .hidden {
+        display: none;
+      }
+      .back.page .bleed {
+        background-color: {{{ account.colors.dark-blue }}};
+      }
+      .image-container {
+        position: relative;
+        overflow: hidden;
+      }
+      .wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: calc(5mm + 3mm);
+        position: relative;
+      }
+      .hero-image {
+        position: relative;
+        width: 100%;
+        margin: 0;
+      }
+      .overlay {
+        background: rgba(167, 169, 172, 0.8);
+        mix-blend-mode: multiply;
+      }
+      .overlay.overlay-top-left {
+        clip-path: polygon(0 0, 100% 0, 100% 45mm, 25mm 45mm, 25mm 100%, 0 100%);
+      }
+      .overlay.overlay-top-right {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, calc(100% - 25mm) 100%, calc(100% - 25mm) 45mm, 0 45mm);
+      }
+      .overlay.overlay-bottom-right {
+        clip-path: polygon(calc(100% - 25mm) 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 35mm), 86.5% calc(100% - 35mm) , 86.5% 0);
+      }
+      .overlay.overlay-bottom-left {
+        clip-path: polygon(0 0, 53mm 0, 53mm calc(100% - 35mm), 100% calc(100% - 35mm), 100% 100%, 0 100%);
+      }
+      .logo {
+        width: 100pt;
+        height: 100pt;
+        position: absolute;
+        top: 13.5pt;
+        left: 24.5pt;
+        z-index: 2;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg');
+      }
+      .logo.logo-black {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f51d18f3be6ad6a13b1bc40750f9201a/adelaide-logo-black.svg');
+      }
+      .main {
+        padding: 30pt 16pt 0 16pt;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .main p {
+        margin-bottom: 2rem;
+      }
+      .subhead {
+        color: {{{account.colors.primary}}};
+        display: inline;
+        position: relative;
+        font-family: "Plantin MT Std", sans-serif;
+        font-size: 18.5pt;
+        font-weight: 600;
+        max-height: 2.4em;
+        /* background: linear-gradient(0deg, rgba(255,255,255,1) 19%, rgba(212,0,0,1) 19%, rgba(212,0,0,1) 24%, rgba(255,255,255,1) 24%); */
+
+      }
+      .body-copy {
+        flex: 1;
+      }
+      .code {
+        font-family: "Bureau Grot", sans-serif;
+        position: absolute;
+        font-size: 6.5pt;
+        line-height: 7.8pt;
+        font-weight: 300;
+        transform: rotate(-90deg);
+        transform-origin: bottom left;
+        left: -13pt;
+        bottom: -8pt;
+        white-space: nowrap;
+      }
+
+      .back .main {
+        padding: 24pt 8pt;
+      }
+      .intro {
+        font-family: "Plantin MT Std", sans-serif;
+        font-weight: normal;
+        margin-bottom: 38pt;
+      }
+
+
+      .u-red-font {
+        color: #D40000;
+        font-weight: bold;
+        padding-right: 3pt;
+      }
+      .u-normal-font {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: normal;
+        font-weight: 3pt
+      }
+      .further-info {
+        width: 100%;
+        border: none;
+        margin-top: 13pt;
+      }
+      .further-info td {
+        display: inline;
+        font-family: "Bureau Grot Condensed", sans-serif;
+        padding-top: 0.15rem;
+        padding-bottom: 0.15rem;
+        margin-bottom: 0.32rem;
+        margin-top: 0.2rem;
+        line-height: 0.73rem;
+      }
+      .further-info td {
+        font-size: 8pt;
+        line-height: 9pt;
+      }
+      .u-red-font {
+        color: #D40000;
+        font-weight: bold;
+        padding-right: 3pt;
+      }
+
+      .internal.page {
+        border: 1px solid cyan;
+      }
+
+      .internal.page .wrapper {
+        padding: calc(30mm + 3mm) calc(10mm + 3mm) calc(22mm + 3mm) calc(10mm + 3mm);
+      }
+
+      .internal.page:nth-of-type(even) .wrapper {
+        padding: calc(30mm + 3mm) calc(10mm + 3mm) calc(22mm + 3mm) calc(10mm + 3mm);
+      }    
+
+      .internal.page .page-number {
+        display: flex;
+        right: 36.5pt;
+      }
+
+      .internal.page:nth-of-type(odd) .page-number {
+        right: auto;
+        left: 36.5pt;
+      }  
+
+      .internal.page .header {
+        max-height: 9.8em;
+        margin-bottom: 20pt;
+      }
+
+      .internal.page .flex-container {
+        height: 100%;
+      }
+
+      .internal.page .header h1 {
+        font-size: 57pt;
+      }
+
+      .dynamic-height {
+        flex-grow: 1;
+        height: 100%;
+      }
+
+      .internal.page .two-column.content {
+        width:48%;
+        margin-right: 7mm;
+      }
+      .wrapper-inner .two-column.content:last-child{
+        margin: 0 !important;
+      }
+
+      .internal.page .three-column.content {
+        width:32%;
+        margin-right: 4mm;
+      }      
+       .wrapper-inner .three-column.content:last-child{
+        margin: 0 !important;
+      }
+
+      .internal.page .two-column .content-height {
+        max-height: 1120pt;
+      }
+
+      .internal.page .three-column .content-height {
+        max-height: 1680pt;
+      }
+
+      .page-number { display: {{{ page-number }}}; position: absolute; bottom: 28.5pt;}
+      .page-number p { color: #252525; font-family: "Plantin MT Std", sans-serif; font-weight: normal; font-style: italic; }
+
+      .counter {
+        counter-reset: section;
+      }
+
+
+      .roman-numeral {
+        color: {{{ account.colors.dark-blue }}}; font-family: "Bureau Grot Condensed", sans-serif; font-weight: bold; font-style: normal; line-height: 0.7em;
+      }
+
+
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .wrapper-inner {
+        flex: 1;
+        position: relative;
+        display: flex;
+      }
+
+      .internal.page .intro-text {
+        font-size: 16pt !important;
+        line-height: 19pt !important;
+        margin: 0 !important;
+        padding: 0 0 11mm 0 !important;
+      }
+
+      .internal.page h1 {
+        font-size: 57pt !important;
+        line-height: 51pt !important;
+        margin: 0 !important;
+        /*padding: 0 0 12mm 0 !important;*/
+      }
+
+      .internal.page h2 {
+        font-size: 10.5pt;
+        line-height: 12pt;
+        margin: 0;
+        padding: 2mm 0 1.5mm 0;
+      }
+
+      .internal.page h3 {
+        font-size: 9pt !important;
+        line-height: 10.5pt !important;
+        margin: 0 !important;
+        padding: 1.5mm 0 !important;
+      }
+
+      .internal.page h4 {
+        font-size: 7.5pt !important;
+        line-height: 9pt !important;
+        margin: 0 !important;
+        padding: 1mm 0 1.5mm 0 !important;
+      }
+
+      p {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0;
+        padding: 0 0 1.5mm 0;
+      }
+
+      .table-name {
+        font-size: 14pt !important;
+        line-height: 17pt !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+        color: {{{ account.colors.dark-blue }}} !important;
+        border-bottom: solid 2pt !important;
+        margin: 0 !important;
+        padding: 3pt 0 !important;
+      }
+      .table-head {
+        font-size: 12pt !important;
+        line-height: 17pt !important;
+        font-weight: bold !important;
+        color: {{{ account.colors.dark-blue }}} !important;
+        margin: 0 !important;
+        padding: 2pt 2pt 0 6pt !important;
+      }
+
+      .image-section {
+        margin: 10pt 0;
+        display: inline-block; 
+        -webkit-column-break-inside: avoid;
+        break-inside: avoid;
+      }     
+
+      @media print {
+        .image-section {
+          -webkit-column-break-inside: avoid;
+          break-inside: avoid;
+        }
+      }
+
+      /* Caption Additions 02/12/18 - LM */
+      .caption {
+        margin: -1mm 0 6mm 0;
+      }
+      .caption__text {
+        font-size: 7.5pt; 
+        font-style: italic;
+        padding: 0; 
+        line-height: 8.5pt;
+      }        
+
+      .enquiry a {
+        font-weight: normal;
+      }
+
+      .two-column a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+
+      .three-column a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+
+      .internal-page * {
+        -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+        page-break-inside: avoid; /* Firefox */
+        break-inside: avoid;
+      }
+
+      .supportLogo {
+        display: none;
+        position: absolute;
+        bottom: 15.4pt;
+        right: 11pt;
+        width: 138pt;
+        max-width: none;      
+      }
+
+      .supportLogo--show {
+        display: block;
+      }
+      
+      .internal.page .two-column.content p {
+   		word-break:break-word;
+      }
+
+    </style>
+  </head>
+  <body style="background: white">
+    <div class="counter">
+      <div class="front page">  
+        <div class="bleed">
+          <!--<div class="placeholder"></div>-->
+          <div class="placeholder2"></div>
+          <div class="fit">
+            <div class="wrapper">                 
+              <div class="hero-image image-container">
+                {{{hero-image}}}
+                <div class="fit overlay overlay-{{ hero-image-overlay }}{{^hero-image-overlay}}top-left{{/hero-image-overlay}}"></div>
+                <div class="logo logo-{{logo-color}}{{^logo-color}}white{{/logo-color}} contain"></div>
+              </div>
+              <div class="main">
+                <div style="font-size: {{ size-header }}{{^size-header}}90{{/size-header}}pt;">
+                  <div style="max-height: 2em; overflow: hidden;">
+                    <div class="check-overflow">
+                      <h1 class="header" style="font-size: {{ size-header }}{{^size-header}}90{{/size-header}}pt;">{{{ header }}}</h1>
+                    </div>
+                  </div>
+                </div>
+                <div style="font-size: {{ size-subheader }}{{^size-subheader}}20{{/size-subheader}}pt;">
+                  <div style="max-height: 2.4em; overflow: hidden;">
+                    <div class="check-overflow">
+                      <h2 class="subhead" style="margin: -2.6pt 0 0 0pt; font-size: {{ size-subheader }}{{^size-subheader}}20{{/size-subheader}}pt;">{{{ subhead }}}</h2>
+                    </div>
+                  </div> 
+                </div>
+                {{#url}}<h3 class="url">{{{url}}}</h3>{{/url}}{{^url}}<h3 class="url">adelaide.edu.au</h3>{{/url}}
+                <img src="https://files.outfit.io/media_library_items/81348/support%2520logo.svg" class="supportLogo supportLogo--{{UOA_support-logo--bkt}}{{^UOA_support-logo--bkt}}none{{/UOA_support-logo--bkt}}"><!--supportLogo-->
+              </div>                        
+            </div>
+          </div>          
+        </div>
+      </div>
+      <div>
+        {{#collection.pages}}
+        <div class="internal page">
+          <div class="bleed">
+            <div class="placeholder"></div>
+            <div class="fit">
+
+              <div class="wrapper">
+
+                <div class="flex-container" data-max-height="940">
+
+                  {{#header}}
+                  <div class="header">
+                    <div class="check-overflow">
+                      <h1>{{{ header }}}</h1>
+                    </div>
+                  </div><!--header-->
+                  {{/header}}
+
+                  <div class="page-number" data-page-text="{{{ booklet-footer }}}"></div>
+
+                  <div class="wrapper-inner">
+                    {{#block.two-column}}
+                    
+                    <div class="two-column content" data-max-height="830">
+                    {{#collection.columns-2-1}}
+
+
+                      {{#block.text-section}}
+                      {{{ text }}}
+                      {{/block.text-section}}
+
+                      {{#block.quote-section}}
+                      <div class="quote-section">
+                        <div class="quote">{{{ quote }}}</div>
+                        {{#quote-name}}<p>{{{ quote-name }}}, {{#qualification}}<em>{{{ qualification }}}</em>{{/qualification}}</p>{{/quote-name}}
+                      </div>
+                      {{/block.quote-section}}
+
+                      {{#block.table-section}}
+                      <h2 class="table-name">{{{ table-name }}}</h2>
+                      <table>  
+                        <tr>
+                          {{#table-head-1}}<th class="table-head">{{{ table-head-1 }}}</th>{{/table-head-1}}
+                          {{#table-head-2}}<th class="table-head">{{{ table-head-2 }}}</th>{{/table-head-2}}
+                        </tr>
+                        {{#spreadsheet.uoa-dl-table}}
+                        <tr>
+                          <td>{{{ copy-1 }}}</td>
+                          <td>{{{ copy-2 }}}</td>
+                        </tr>
+                        {{/spreadsheet.uoa-dl-table}}
+                      </table>
+                      {{/block.table-section}}
+
+                      {{#block.image-section}}
+
+                      {{#UOA_block-image}}
+                      <img class="image-section" src="{{ UOA_block-image }}" />
+                      {{/UOA_block-image}}
+
+                      {{#caption}}
+                      <div class="caption">
+                        <p class="caption__text text-overflow" data-limit="35">{{{caption}}}</p>
+                      </div>
+                      {{/caption}}                      
+
+                      {{/block.image-section}}                                        
+
+
+    
+
+
+                    {{/collection.columns-2-1}}
+                                      </div><!--content-->
+                     
+                    <div class="two-column content" data-max-height="830">
+
+                    {{#collection.columns-2-2}}
+
+                  
+
+                      {{#block.text-section}}
+                      {{{ text }}}
+                      {{/block.text-section}}
+
+                      {{#block.quote-section}}
+                      <div class="quote-section">
+                        <div class="quote">{{{ quote }}}</div>
+                        {{#quote-name}}<p>{{{ quote-name }}}, {{#qualification}}<em>{{{ qualification }}}</em>{{/qualification}}</p>{{/quote-name}}
+                      </div>
+                      {{/block.quote-section}}
+
+                      {{#block.table-section}}
+                      <h2 class="table-name">{{{ table-name }}}</h2>
+                      <table>  
+                        <tr>
+                          {{#table-head-1}}<th class="table-head">{{{ table-head-1 }}}</th>{{/table-head-1}}
+                          {{#table-head-2}}<th class="table-head">{{{ table-head-2 }}}</th>{{/table-head-2}}
+                        </tr>
+                        {{#spreadsheet.uoa-dl-table}}
+                        <tr>
+                          <td>{{{ copy-1 }}}</td>
+                          <td>{{{ copy-2 }}}</td>
+                        </tr>
+                        {{/spreadsheet.uoa-dl-table}}
+                      </table>
+                      {{/block.table-section}}
+
+                      {{#block.image-section}}
+
+                      {{#UOA_block-image}}
+                      <img class="image-section" src="{{ UOA_block-image }}" />
+                      {{/UOA_block-image}}
+
+                      {{#caption}}
+                      <div class="caption">
+                        <p class="caption__text text-overflow" data-limit="35">{{{caption}}}</p>
+                      </div>
+                      {{/caption}}                      
+
+                      {{/block.image-section}}                                        
+
+            
+
+                    {{/collection.columns-2-2}}
+
+                          </div><!--content-->
+                    {{/block.two-column}}
+                    
+                    {{#block.three-column}}
+
+                    <div class="three-column content" >
+                      
+                    {{#collection.columns-3-1}}
+
+                
+
+                      {{#block.text-section}}
+                      {{{ text }}}
+                      {{/block.text-section}}
+
+                      {{#block.quote-section}}
+                      <div class="quote-section">
+                        <div class="quote">{{{ quote }}}</div>
+                        {{#quote-name}}<p>{{{ quote-name }}}, {{#qualification}}<em>{{{ qualification }}}</em>{{/qualification}}</p>{{/quote-name}}
+                      </div>
+                      {{/block.quote-section}}
+
+                      {{#block.table-section}}
+                      <h2 class="table-name">{{{ table-name }}}</h2>
+                      <table>  
+                        <tr>
+                          {{#table-head-1}}<th class="table-head">{{{ table-head-1 }}}</th>{{/table-head-1}}
+                          {{#table-head-2}}<th class="table-head">{{{ table-head-2 }}}</th>{{/table-head-2}}
+                        </tr>
+                        {{#spreadsheet.uoa-dl-table}}
+                        <tr>
+                          <td>{{{ copy-1 }}}</td>
+                          <td>{{{ copy-2 }}}</td>
+                        </tr>
+                        {{/spreadsheet.uoa-dl-table}}
+                      </table>
+                      {{/block.table-section}}
+
+                      {{#block.image-section}}
+
+                      {{#UOA_block-image}}
+                      <img class="image-section" src="{{ UOA_block-image }}" />
+                      {{/UOA_block-image}}
+
+                      {{#caption}}
+                      <div class="caption">
+                        <p class="caption__text text-overflow" data-limit="35">{{{caption}}}</p>
+                      </div>
+                      {{/caption}}                      
+
+                      {{/block.image-section}}                    
+               
+                    {{/collection.columns-3-1}}
+                      
+                    </div><!--content-->
+                     <div class="three-column content" >
+                       
+                     {{#collection.columns-3-2}}
+
+                   
+
+                      {{#block.text-section}}
+                      {{{ text }}}
+                      {{/block.text-section}}
+
+                      {{#block.quote-section}}
+                      <div class="quote-section">
+                        <div class="quote">{{{ quote }}}</div>
+                        {{#quote-name}}<p>{{{ quote-name }}}, {{#qualification}}<em>{{{ qualification }}}</em>{{/qualification}}</p>{{/quote-name}}
+                      </div>
+                      {{/block.quote-section}}
+
+                      {{#block.table-section}}
+                      <h2 class="table-name">{{{ table-name }}}</h2>
+                      <table>  
+                        <tr>
+                          {{#table-head-1}}<th class="table-head">{{{ table-head-1 }}}</th>{{/table-head-1}}
+                          {{#table-head-2}}<th class="table-head">{{{ table-head-2 }}}</th>{{/table-head-2}}
+                        </tr>
+                        {{#spreadsheet.uoa-dl-table}}
+                        <tr>
+                          <td>{{{ copy-1 }}}</td>
+                          <td>{{{ copy-2 }}}</td>
+                        </tr>
+                        {{/spreadsheet.uoa-dl-table}}
+                      </table>
+                      {{/block.table-section}}
+
+                      {{#block.image-section}}
+
+                      {{#UOA_block-image}}
+                      <img class="image-section" src="{{ UOA_block-image }}" />
+                      {{/UOA_block-image}}
+
+                      {{#caption}}
+                      <div class="caption">
+                        <p class="caption__text text-overflow" data-limit="35">{{{caption}}}</p>
+                      </div>
+                      {{/caption}}                      
+
+                      {{/block.image-section}}                    
+
+                    {{/collection.columns-3-2}}
+                       
+                    </div><!--content-->
+                    <div class="three-column content" >
+                      
+                     {{#collection.columns-3-3}}
+
+                      {{#block.text-section}}
+                      {{{ text }}}
+                      {{/block.text-section}}
+
+                      {{#block.quote-section}}
+                      <div class="quote-section">
+                        <div class="quote">{{{ quote }}}</div>
+                        {{#quote-name}}<p>{{{ quote-name }}}, {{#qualification}}<em>{{{ qualification }}}</em>{{/qualification}}</p>{{/quote-name}}
+                      </div>
+                      {{/block.quote-section}}
+
+                      {{#block.table-section}}
+                      <h2 class="table-name">{{{ table-name }}}</h2>
+                      <table>  
+                        <tr>
+                          {{#table-head-1}}<th class="table-head">{{{ table-head-1 }}}</th>{{/table-head-1}}
+                          {{#table-head-2}}<th class="table-head">{{{ table-head-2 }}}</th>{{/table-head-2}}
+                        </tr>
+                        {{#spreadsheet.uoa-dl-table}}
+                        <tr>
+                          <td>{{{ copy-1 }}}</td>
+                          <td>{{{ copy-2 }}}</td>
+                        </tr>
+                        {{/spreadsheet.uoa-dl-table}}
+                      </table>
+                      {{/block.table-section}}
+
+                      {{#block.image-section}}
+
+                      {{#UOA_block-image}}
+                      <img class="image-section" src="{{ UOA_block-image }}" />
+                      {{/UOA_block-image}}
+
+                      {{#caption}}
+                      <div class="caption">
+                        <p class="caption__text text-overflow" data-limit="35">{{{caption}}}</p>
+                      </div>
+                      {{/caption}}                      
+
+                      {{/block.image-section}}                    
+
+
+                    {{/collection.columns-3-3}}
+                    </div><!--content-->
+                    {{/block.three-column}}
+                  </div>
+
+                </div><!--flex-container-->
+
+              </div><!--wrapper-->
+            </div> <!--fit-->
+          </div><!--bleed-->
+        </div><!--page-->
+        {{/collection.pages}}
+      </div>
+
+      <div class="back page">
+        <div class="bleed">
+          <!--<div class="placeholder"></div>-->
+          <div class="fit">
+            <div class="wrapper">
+
+              <div class="center">
+                <div class="center-main">
+                  <div class="enquiries">
+                    <h2>{{{ table-name-heading }}}</h2>
+
+
+                    {{#collection.further-information-collection}}
+
+                    {{#address}}
+                    <p class="enquiry">                        
+                      <span>{{{ address }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/address}}
+
+                    {{#enquiries}}
+                    <p class="enquiry">       
+                      <label>Enquiries</label>
+                      <span>{{{ enquiries }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/enquiries}}
+
+                    {{#telephone}}
+                    <p class="enquiry">       
+                      <label>Telephone</label>
+                      <span>{{{ telephone }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/telephone}}
+
+                    {{#free-call}}
+                    <p class="enquiry">       
+                      <label>Free Call</label>
+                      <span>{{{ free-call }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/free-call}}
+
+                    {{#adelaide}}
+                    <p class="enquiry has-icon">
+                      <i class="adelaide"></i>
+                      <span>{{{ adelaide }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/adelaide}}
+
+                    {{#facebook}}
+                    <p class="enquiry has-icon">
+                      <i class="facebook"></i>
+                      <span>{{{ facebook }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/facebook}}
+
+                    {{#twitter}}
+                    <p class="enquiry has-icon">
+                      <i class="twitter"></i>
+                      <span>{{{ twitter }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/twitter}}
+
+                    {{#snapchat}}
+                    <p class="enquiry has-icon">
+                      <i class="snapchat"></i>
+                      <span>{{{ snapchat }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/snapchat}}
+
+                    {{#instagram}}
+                    <p class="enquiry has-icon">
+                      <i class="instagram"></i>
+                      <span>{{{ instagram }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/instagram}}
+
+                    {{#wechat}}
+                    <p class="enquiry has-icon">
+                      <i class="wechat"></i>
+                      <span>{{{ wechat }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/wechat}}
+
+                    {{#weibo}}
+                    <p class="enquiry has-icon">
+                      <i class="weibo"></i>
+                      <span>{{{ weibo }}}</span>
+                    </p>
+                    <div class="line"></div>   
+                    {{/weibo}}
+
+                    {{/collection.further-information-collection}}
+                  </div>
+                  <div class="outfit">
+                    © The University of Adelaide. Published <span id="month"></span> <span id="year"></span> {{{ cricos }}} Outfit Job No: <span data-project-code></span>
+                  </div>
+                  {{#disclaimer-toggle}}
+                  <div class="disclaimer">
+                    <span class="lead">Disclaimer</span> The information in the publications is current
+                    as at the date of printing and is subject ot change. You can find updated information
+                    on our website at <strong>{{{ disclaimer-url }}}</strong> or contact us on 1800 061 459. The University
+                    of Adelaide assumes no responsibility for the accuracy of information provided by third parties.
+                  </div>
+                  {{/disclaimer-toggle}}
+                </div>           
+              </div>
+            </div>
+
+            <div class="logo-south contain"></div>
+
+          </div>          
+        </div>
+      </div>    
+
+    </div><!--counter-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed){
+        bleed.style.cssText = !!window.showCrop ?
+          'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        :
+        'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+      });
+
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-overflow'))
+          .forEach(function(e) {
+          const height = $(e).height();             
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function loop() {
+        checkLimitedText();
+      } setInterval(loop, 1000);
+
+      $(window).bind("load", function() {
+        // Document has been loaded..      
+      });          
+
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+                          "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+                         ];
+
+      var m = new Date();
+      document.getElementById('month').innerHTML = (monthNames[m.getMonth()])
+
+      var y = new Date();
+      document.getElementById('year').innerHTML = y.getFullYear();
+
+      function checkLimitedBox() {
+        Array.prototype.slice.call(document.querySelectorAll('.box-overflow'))
+          .forEach(function(e) {
+          const maxHeight = $(e).height();
+          const height = $(e).children('.box-inner').outerHeight();
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+    </script>   
+
+    <script> 
+      const pageNumbers = document.querySelectorAll('.page-number');
+
+      pageNumbers.forEach( (pageNumber, index) => {
+        
+        //if (index === 0) { return }
+        const paragraph = document.createElement("p");
+        const span = document.createElement("span"); 
+
+        paragraph.innerText = pageNumber.dataset.pageText; 
+
+        span.classList.add("roman-numeral");
+        span.innerText = index+1;
+
+        pageNumber.appendChild(paragraph);
+        pageNumber.appendChild(span);
+
+        if (index % 2 === 0 ) {
+          pageNumber.style.flexDirection = 'row-reverse';
+          span.style.marginRight = '10pt';
+        } else {
+          paragraph.style.marginRight = '10pt';
+        }
+      })
+    </script>
+    <script src="prefixfree.js"></script>
+
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/projectCode.1.0.0.js"></script>
+    <script>window.setProjectCode('[ID]');</script>
+    
+    <script src="js/char-limit.js"></script>
+    <script src="check-height.js"></script>    
+    <script src="js/max-line-check.js"></script>    
+    <script src="max-height-check.js"></script> 
+    
+    <script>
+         // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          checkHeight(document.getElementsByClassName('check-overflow')); 
+          maxLineCheck(); 
+          maxHeightCheck(); 
+        });
+      });    
+
+      const maxLineChecks = document.querySelectorAll('[data-max-line]');
+      const maxHeightChecks = document.querySelectorAll('[data-max-height]');
+      const checkOverflows = document.querySelectorAll('.check-overflow');
+
+      if ( maxLineChecks.length !== 0) {
+        maxLineChecks.forEach(maxLineCheck => {
+          overflowObserver.observe(maxLineCheck, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });
+      }
+
+      if ( maxHeightChecks.length !== 0) {
+        maxHeightChecks.forEach(maxHeightCheck => {
+          overflowObserver.observe(maxHeightCheck, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });
+      }      
+
+      if ( checkOverflows.length !== 0) {      
+        checkOverflows.forEach(checkOverflow => {
+          overflowObserver.observe(checkOverflow, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });      
+      }
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        checkHeight(document.getElementsByClassName('check-overflow')); 
+        maxLineCheck(); 
+        maxHeightCheck();         
+      });
+      
+      charLimit();
+    </script>
+  </body>
+</html>

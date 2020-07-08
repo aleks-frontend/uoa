@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html data-sign="OSB" async>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css');
+      @import url(https://outfit-assets-production.s3.amazonaws.com/fonts/Helvetica%20Neue%20LT/stylesheet.css);
+
+      html {
+        font-family: 'Bureau Grot';
+        font-size: 11pt;
+        color: #000;
+      }
+
+      .overflow {
+        border: none;
+        box-shadow: 0 0 0 0.0362rem red;
+        background: rgba(255, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;}
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 0.1rem;
+        right: 0.1rem;
+        height: .3107rem;
+        width: .3107rem;
+        border: 0.01rem solid red;
+        color: red;
+        padding: 0.01rem 0.01rem 0.01rem 0.0155rem;
+        box-sizing: border-box;
+        font-size: 0.2279rem;
+        text-align: center;
+        line-height: .2693rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 0.5rem;
+        right:  0.1rem;
+        background-color: black;
+        color: white;
+        border-radius: 0.01rem;
+        padding: 0.2rem 0.2rem;        
+        box-sizing: border-box;
+        font-size: 0.35rem;
+        font-weight: 400;     
+        text-align: right;
+        width: 6rem;
+        line-height: 0.45rem;
+      }
+
+      .overflow[data-char-limit]:hover:after {
+        content: 'Character limit exceeded';        
+      }
+
+      :root {
+        --font-primary: 'Bureau Grot Condensed', sans-serif;
+        --font-secondary: 'Plantin MT Std';
+        --font-tertiary: 'Helvetica Neue LT Std', sans-serif;
+        --color-primary: #00254f;
+        --color-secondary: {{{account.colors.colour-black}}};
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        /*padding: 0.4784rem 0.5462rem;*/ 
+      }
+
+      .header {
+        display: flex;
+        /*height: 4.0187rem;*/
+        /*background: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/70059013f878c2bf9622dac61f322e7b/chage-tomorow-banner.jpg) center no-repeat;*/
+        /*background: url(https://outfit-v2-exports-production.s3.ap-southeast-2.amazonaws.com/media_library_items/51ac08847087a1d1b4405f789ee1dc33/change-tomorrow-advert-CMYK-np.jpg) top no-repeat;*/
+        /*background-size: contain;*/
+      }
+
+      .body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /*padding: 0.8611rem 0.9289rem;*/
+        padding: 8.28mm 8.429mm;
+        padding-bottom: 3mm;
+      }
+
+      /* 137mm x 156mm - Digital */
+      /* 137mm x 156mm - Print */
+      .body__inner {
+        max-height: 10.6rem;
+      }
+
+      /* 137mm x 188mm - Digital */
+      @media screen and (min-height: 600px) {
+        .body__inner {
+          max-height: 10.7rem;
+        }
+      }    
+
+      /* 137mm x 188mm - Print */
+      @media screen and (min-height: 720px) {
+        .body__inner {
+          /*max-height: 10.9rem;*/
+          max-height: 16rem;
+        }
+      }
+
+      /* 137mm x 220mm - Digital */
+      @media screen and (min-height: 780px) {
+        .body__inner {
+          max-height: 14.5rem;
+        }
+      }
+
+      /* 137mm x 220mm - Print */
+      @media screen and (min-height: 860px) {
+        .body__inner {
+          max-height: 12.4rem;
+        }
+      }
+
+      .heading {
+        margin-bottom: 0.49rem;
+        font-size: 1.0605rem;
+        font-size: 27pt;
+        line-height: 1em;
+      }
+
+      .heading h1 {
+        font-family: var(--font-primary);
+        font-weight: bold;
+        letter-spacing: -0.1pt;
+        text-transform: uppercase;
+        /*color: var(--color-primary);*/
+      }
+
+      .content {
+        /*padding-right: 1.5947rem;*/
+      }
+
+      .content p {
+        margin-bottom: 0.24rem;
+        font-size: 0.285rem;
+        font-size: 8pt;
+        font-family: var(--font-tertiary);
+        color: var(--color-secondary);
+        line-height: 1.25;
+      }
+
+      .details {
+        display: flex;
+        margin-bottom: 0.24rem;
+      }
+
+      .details__label {
+        width: 2.9502rem;
+        padding-right: 0.1595rem;
+        font-weight: 700;
+      }
+
+      .details__value {
+        flex: 1;
+      }
+
+      .details p {
+        margin-bottom: 0;
+      }
+
+      .footer {
+        height: 1.95rem;
+        padding-left: 0.9449rem;
+      }
+
+      .footer h1,
+      .footer p,
+      .footer a {
+        font-family: var(--font-primary);
+        /*color: var(--color-primary);*/
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .footer h1 {
+        font-size: 0.6379rem;
+        text-transform: uppercase;
+        line-height: 1em;
+      }
+
+      .footer p,
+      .footer a {
+        font-size: 0.6140rem;
+        letter-spacing: 0.1pt;
+      }
+
+      .position-title {
+        font-weight: 600;
+      }
+
+
+      .available-position {
+        /*width: 250px;*/
+        font-size: 10px;
+        margin-bottom: 6px;
+      }
+
+      .available-position span {
+        font-size: 0.285rem;
+        font-family: var(--font-tertiary);
+        color: var(--color-secondary);
+        line-height: 1.25;
+      }
+      /*.available-position .reference {
+      color: rgba(0,0,0,0.6);
+      }*/
+
+      .header img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+      .show-print-keyline .fit{
+        border: 1px solid black;
+      }
+
+      a, .reference{
+        color: #000000;
+      }
+
+      .ps-120x110 .body{
+        padding: 6mm 6mm;
+        padding-bottom: 1mm;
+      }
+
+      .ps-120x110 .body__inner{
+        max-height: 8.9rem;
+      }
+      
+      .ps-124x129 .body__inner{
+        max-height: 10rem;
+      }
+      
+      .content p:last-child{
+        margin-bottom: 0;
+      }
+      
+      .ps-124x129 .body{
+        padding-bottom: 1mm;
+      }
+
+      .ps-120x110 .heading{
+        font-size: 25pt;
+      }
+      
+      .ps-147x150 .body__inner{
+        max-height: 10.1rem;
+      }
+      
+      .ps-147x150 .body{
+        padding-bottom: 1mm;
+      }
+      
+      .footer div{
+        max-height: 60px;
+      }
+      
+      .ps-120x110 .footer div{
+        max-height: 40px;
+      }
+      
+      .ps-120x97 .heading{
+        font-size: 25pt;
+      }
+      
+      .ps-120x97 .body{
+        padding: 5.28mm 5.429mm;
+        padding-bottom: 1mm;
+      }
+      
+      .ps-120x97 .footer{
+        padding-left: 5.429mm;
+      }
+      
+      .ps-120x97 .body__inner {
+        max-height: 7.9rem;
+      }
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="{{{print-keyline}}} ps-{{page-size-press-advert}}" data-crop="{{show-crop}}">
+    <div class="testing" style="">
+
+
+      <div class="page" style="">
+
+        <div class="bleed center-children">
+
+          <div class="container fit">
+
+            <div class="header"><img src="https://outfit-v2-exports-production.s3.ap-southeast-2.amazonaws.com/media_library_items/51ac08847087a1d1b4405f789ee1dc33/change-tomorrow-advert-CMYK-np.jpg"/> </div>
+            <!-- header -->
+            <div class="body">
+              <div class="body__inner" data-max-height="css">
+                <div class="check-overflow">
+                  <div class="heading" data-max-line="3">    
+                    {{{ UOA_header--pa }}}
+                  </div> <!-- heading -->
+                  <div class="content">
+                    {{#collection.UOA_body--pa }}
+                    {{#block.UOA_content-block}}
+                    <div class="content__block">
+                      {{{ UOA_content-input }}}
+                    </div> <!-- content__block -->
+                    {{/block.UOA_content-block}}
+                    {{#block.UOA_details-block}}
+                    <div class="details__container">
+                      {{ #UOA_details__label-1--pa }}
+                      {{ #UOA_details__value-1--pa }}
+                      <div class="details" data-max-line="2">
+                        <div class="details__label">
+                          {{{ UOA_details__label-1--pa }}}
+                        </div> <!-- details__label -->
+                        <div class="details__value">
+                          {{{ UOA_details__value-1--pa }}}
+                        </div> <!-- details__value -->
+                      </div> <!-- details -->
+                      {{ /UOA_details__value-1--pa }}
+                      {{ /UOA_details__label-1--pa }}
+                      {{ #UOA_details__label-2--pa }}
+                      {{ #UOA_details__value-2--pa }}
+                      <div class="details" data-max-line="2">
+                        <div class="details__label">
+                          {{{ UOA_details__label-2--pa }}}
+                        </div> <!-- details__label -->
+                        <div class="details__value">
+                          {{{ UOA_details__value-2--pa }}}
+                        </div> <!-- details__value -->
+                      </div> <!-- details -->
+                      {{ /UOA_details__value-2--pa }}
+                      {{ /UOA_details__label-2--pa }}
+                      {{ #UOA_details__label-3--pa }}
+                      {{ #UOA_details__value-3--pa }}
+                      <div class="details" data-max-line="2">
+                        <div class="details__label">
+                          {{{ UOA_details__label-3--pa }}}
+                        </div> <!-- details__label -->
+                        <div class="details__value">
+                          {{{ UOA_details__value-3--pa }}}
+                        </div> <!-- details__value -->
+                      </div> <!-- details -->
+                      {{ /UOA_details__value-3--pa }}
+                      {{ /UOA_details__label-3--pa }}
+                      {{ #UOA_details__label-4--pa }}
+                      {{ #UOA_details__value-4--pa }}
+                      <div class="details" data-max-line="2">
+                        <div class="details__label">
+                          {{{ UOA_details__label-4--pa }}}
+                        </div> <!-- details__label -->
+                        <div class="details__value">
+                          {{{ UOA_details__value-4--pa }}}
+                        </div> <!-- details__value -->
+                      </div> <!-- details -->
+                      {{ /UOA_details__value-4--pa }}
+                      {{ /UOA_details__label-4--pa }}
+                      {{ #UOA_details__label-5--pa }}
+                      {{ #UOA_details__value-5--pa }}
+                      <div class="details" data-max-line="2">
+                        <div class="details__label">
+                          {{{ UOA_details__label-5--pa }}}
+                        </div> <!-- details__label -->
+                        <div class="details__value">
+                          {{{ UOA_details__value-5--pa }}}
+                        </div> <!-- details__value -->
+                      </div> <!-- details -->
+                      {{ /UOA_details__value-5--pa }}
+                      {{ /UOA_details__label-5--pa }}
+                    </div> <!-- details__container -->
+                    {{/block.UOA_details-block}}
+
+                    {{#block.UOA-available-position}}
+                    <div class="available-position">
+                      <span class="position-title">{{{position-title}}}</span>
+                      <span class="reference"> {{{reference}}}</span>
+                    </div>
+                    {{/block.UOA-available-position}}
+                    {{/collection.UOA_body--pa }}
+                  </div> <!-- content -->
+                </div> <!-- check-overflow -->
+              </div> <!-- body__inner -->
+            </div> <!-- body -->
+            <div class="footer" data-max-height="200"> 
+              <div data-max-height="css">{{{ UOA_footer--pa }}}</div>
+            </div> <!-- footer -->
+
+          </div><!--container fit-->
+
+        </div><!--bleed-->
+
+      </div><!--page-->
+    </div>
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+    </script>
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/char-limit.js" type="text/javascript"></script>
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/max-height-check.js" type="text/javascript"></script>
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/max-line-check.js" type="text/javascript"></script>
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+    <script src="check-export-mode.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+    
+
+    <script>
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if (window.showCrop === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      checkCrop();  
+      checkExport(); 
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      /*
+      TextFit.fit({
+        selector: '.textFit'
+      });      
+      */
+      
+
+
+      setTimeout(function(){
+
+        const overflowObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            maxLineCheck();
+            maxHeightCheck();
+            charLimit();
+          });
+        });
+
+        overflowObserver.observe(document.body, {
+          attributes: false,
+          characterData: true,
+          childList: true,
+          subtree: true,
+          attributeOldValue: false,
+          characterDataOldValue: true
+        });
+
+
+        document.fonts.ready.then(() => {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+
+
+      }, 2000);
+
+
+
+    </script>
+
+  </body>
+</html>
