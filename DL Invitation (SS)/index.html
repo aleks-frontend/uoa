@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="global.css">
+
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css">
+
+    <style>
+
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css');
+
+      body {
+        font-family: "Plantin MT Std", sans-serif;
+        color: #252525;
+      }
+
+      h1, h2, h3, h4 {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-weight: bold;  
+        line-height: 1.2em;
+        margin: 0.25em 0 0.5em;
+      }
+
+      h1 {
+        font-size: 39pt;
+        line-height: 0.9em;
+        text-transform: uppercase;
+        margin: 0 0 0.3em;
+        color: {{{ account.colors.dark-blue }}};
+      }
+
+      h2 {
+        font-size: 10.5pt;
+        color: #D40000;
+        font-weight: normal;
+      }
+
+      h3 {
+        font-size: 9pt;
+      }
+
+      h4 {
+        font-size: 7.5pt;
+      }
+
+      p, ul, ol {
+        font-size: 8.5pt; 
+        margin: 0.25em 0 0.5em;
+      }
+
+      ol li, 
+      ul li {  
+        padding-left: 5pt;
+        margin: 0.25em 0 0.5em;
+        position: relative;
+      }
+
+      ol li::before,
+      ul li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #D40000;
+      }
+
+      .main p {
+        margin-right: 11pt;
+      }
+
+      a {
+        font-weight: bold;
+        text-decoration: none;
+        color: inherit !important;
+      }
+
+      .image-container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .wrapper { 
+        display: -webkit-box;  
+        display: -ms-flexbox;  
+        display: flex;
+        flex-direction: column;  
+        height: 100%;
+        padding: 7mm 11mm 7mm 11mm;
+        position: relative;
+      }
+
+      .hero-image {
+        position: relative;
+        width: calc(100% + 12mm);
+        height: 241pt;
+        margin: -2mm -6mm;
+      }
+
+      .overlay {
+        background: rgba(167,169,172, 0.8);
+        mix-blend-mode: multiply;
+      }
+
+      .overlay.overlay-top-left {
+        clip-path: polygon(0 0, 100% 0, 100% 40%, 18.5% 40%, 18.5% 100%, 0 100%);  
+      }
+
+      .overlay.overlay-top-right {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 81.5% 100%, 81.5% 40%, 0 40%);
+      }
+
+      .overlay.overlay-bottom-right {
+        clip-path: polygon(81.5% 0, 100% 0, 100% 100%, 0 100%, 0 68%, 81.5% 68%, 81.5% 0);
+      }
+
+      .overlay.overlay-bottom-left {
+        clip-path: polygon(0 0, 42% 0, 42% calc(100% - 13mm), 100% calc(100% - 13mm), 100% 100%, 0 100%);
+      }
+
+      .logo {
+        width: 84pt;
+        height: 59pt;
+        position: absolute;
+        top: 21pt;
+        left: 15pt;
+        z-index: 2;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg');  
+      }
+
+      .logo.logo-black {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f51d18f3be6ad6a13b1bc40750f9201a/adelaide-logo-black.svg');
+      }
+
+      .main {
+        padding: 57pt 0 0 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .header {
+        line-height: 1em;
+        margin-bottom: 1.4rem;
+      }
+
+      .subhead {
+        color: {{{account.colors.primary}}};
+        position: relative;
+        font-family: "Plantin MT Std", sans-serif;
+        font-size: 18.5pt;
+        font-weight: 600;
+        max-height: 2.4em;
+        /* background: linear-gradient(0deg, rgba(255,255,255,1) 19%, rgba(212,0,0,1) 19%, rgba(212,0,0,1) 24%, rgba(255,255,255,1) 24%); */
+      }
+
+      .body-copy {
+        flex: 1;
+      }
+
+      .url {
+        font-size: 17pt;
+        letter-spacing: -0.02em;
+        color: {{{ account.colors.dark-blue }}};
+        margin: auto 0 10pt;
+      }
+
+      .code {
+        font-family: "Bureau Grot", sans-serif;
+        position: absolute;
+        font-size: 6.5pt;
+        line-height: 7.8pt;
+        font-weight: 300;
+        transform: rotate(-90deg);
+        transform-origin: bottom left;
+        white-space: nowrap;  
+      }
+
+      /** Back page */
+      .back .main {
+        padding: 24pt 8pt;
+      }
+
+      .intro {
+        font-family: "Plantin MT Std", sans-serif;
+        font-weight: normal;
+        margin-bottom: 38pt;
+      }
+
+      .enquiries {  
+        font-family: "Bureau Grot Condensed", sans-serif;
+        margin-top: 22pt;
+      }
+
+      .enquiries h2 {
+        margin-bottom: 3pt;
+      }
+
+      .enquiry {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: 300;
+        font-size: 8pt;
+        margin: 0 0 1pt;
+      }
+
+      .enquiry label {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      /** Print */
+
+      .u-red-font {
+        color: #D40000;
+        font-weight: bold;
+        margin: 0 !important;
+        padding: 0 !important;
+        padding-right: 3pt !important;
+      }
+
+      .u-normal-font {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: "Bureau Grot", sans-serif;
+        font-size: 8pt;
+        font-weight: normal !important;
+      }
+
+      .further-info {
+        width: 100%;
+        border: none;
+        margin-top: 4pt;
+      }
+
+      .further-info td {
+        display: inline;
+        font-family: "Bureau Grot Condensed", sans-serif;
+        padding-top: 0.15rem;
+        padding-bottom: 0.15rem;
+        margin-bottom: 0.32rem;
+        margin-top: 0.2rem;
+        line-height: 0.73rem;
+      }
+
+      .further-info td {
+        font-size: 10pt;
+        line-height: 9pt;
+      }
+
+      .table {
+        width: 100%;
+        margin: -2pt 0 0 0;
+      }
+
+      .table tr {
+        display: flex;
+        border-bottom: 1pt solid {{{ account.colors.dark-blue }}};
+      }
+
+      .table tr td {
+        display: inline;
+        padding: 5pt 0 3pt 0;
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: 300;
+        font-size: 8pt;
+        line-height: 9pt;
+      }
+
+      .table-label {
+        margin-right: 0;
+        font-size: 8pt;
+        line-height: 9pt;
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-weight: 700;
+        color: #D40000;
+        text-transform: uppercase;
+      }
+
+      .page { background-color: white !important; }
+
+      .test {
+        /* background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/0215c56cf5fc630042d6cd9018351250/Invitation%20SS%20L.png); */
+        position: absolute;
+        opacity: 0.7;
+        z-index: 2;
+        background-position: center;
+        background-position: center;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .subhead {
+        display: none;
+      }
+
+      .u-subhead-impact .subhead.subhead-impact {
+        display: block;
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-size: 34pt;
+        font-weight: normal;
+        max-height: 2.4em;
+        position: absolute;
+        top: 16.1rem;
+        right: 0.9em;
+        z-index: 2;
+        padding: 10px 15px 17px;
+        font-weight: bold;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+        border: 3pt solid #D40000;
+      }
+
+      .u-subhead-subtle .main {
+        padding: 24pt 0 0 0;
+      }
+
+      .u-subhead-subtle .subhead.subhead-subtle {
+        display: block;
+      }  
+
+      .wrapper {
+        display: block;
+        position: absolute;
+        padding: 14pt;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        height: auto;
+      }
+
+      .hero-image {
+        position: absolute;
+        margin: 0;
+        top: 14pt;
+        bottom: 14pt;
+        width: 47.5%;
+        height: auto;
+      }
+
+      .main {
+        position: absolute;
+        padding: 41pt 0 8pt 20pt;
+        top: 14pt;
+        bottom: 14pt;
+        right: 14pt;
+        left: calc(47.5% + 14pt);
+      }
+
+      .subhead {
+        position: absolute;
+        top: -3pt;
+        right: 3pt;
+        font-size: 17pt;        
+      }      
+
+      .subhead-invisible {
+        display: none;
+      }
+
+      .subhead-visible {
+        display: inline;
+      }
+
+      .code {
+        font-family: "Bureau Grot", sans-serif;
+        position: absolute;
+        font-size: 6pt;
+        line-height: 7.8pt;
+        font-weight: 300;
+        transform: rotate(0deg);
+        transform-origin: bottom left;
+        right: -5pt;
+        bottom: -5pt;
+        white-space: nowrap;
+      }
+
+      .logo {
+        width: 89pt;
+        height: 79pt;
+        position: absolute;
+        top: 10pt;
+        left: 14pt;
+        z-index: 2;
+      }
+
+      .overlay.overlay-bottom-right {
+        clip-path: polygon(81.5% 0, 100% 0, 100% 100%, 0% 100%, 0% 81%, 90.5% 81%, 90.5% 0);
+      }
+
+      .box-collection {
+        margin-top: 15pt;
+        height: 130pt;
+        -moz-column-count: 2;
+        -moz-column-fill: auto;
+        -moz-column-gap: 3pt;
+        column-count: 2;
+        column-fill: auto;
+        column-gap: 3pt;
+      }
+
+      .further-info tr {
+        border-bottom: 1pt solid {{{ account.colors.dark-blue }}};
+        line-height: 11.5pt;
+      }
+
+      .further-info tr td {
+        padding: 5pt 0 2pt;
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-size: 8pt;
+      }
+
+      .table-label {
+        margin-right: 0;
+        font-size: 8pt;
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-weight: 700;
+        color: {{{ account.colors.dark-blue }}};
+        text-transform: uppercase;
+      }
+
+      .table a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+      
+      .table {
+        display: inline-block;
+      }
+      
+      .table tr:first-child td {
+        padding-top: 3pt;
+      }
+
+    </style>
+  </head>
+  <body style="background: white">
+    <div class="page">
+      <div class="bleed">
+        <div class="fit">
+          <div class="test contain"></div>
+          <div class="wrapper"> 
+            <div class="hero-image image-container">
+              {{{hero-image}}}
+              <div class="fit overlay overlay-{{ hero-image-overlay }}{{^hero-image-overlay}}top-left{{/hero-image-overlay}}"></div>
+              <div class="logo logo-{{logo-color}}{{^logo-color}}white{{/logo-color}} contain"></div>
+            </div><!-- end hero-image -->
+            <div class="main">              
+              <h2 class="subhead subhead-subtle text-overflow {{ subhead-toggle }}">{{{ subhead }}}</h2>       
+              <div style="font-size: {{ main-header-font-size }}{{^main-header-font-size}}26{{/main-header-font-size}}pt;">
+                <div style="max-height: 2em; overflow: hidden;">
+                  <div class="check-overflow">
+                    <h1 class="header" style="font-size: {{ main-header-font-size }}{{^main-header-font-size}}26{{/main-header-font-size}}pt;">{{{ header }}}</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="box-collection">            
+                <div style="max-height: 24em; overflow: hidden;">
+                  <div class="check-overflow">
+                    {{{ copy }}}
+                    <table class="table">
+                      {{#collection.event-details}}
+                      <!-- {{{ block-title }}} -->
+                      {{#when-hyperlink}}
+                      <tr>
+                        <td><span class="table-label">When</span> {{{ when-hyperlink }}}</td>
+                      </tr>
+                      {{/when-hyperlink}}
+                      {{#where-hyperlink}}
+                      <tr>
+                        <td><span class="table-label">Where</span> {{{ where-hyperlink }}}</td>
+                      </tr>
+                      {{/where-hyperlink}}
+                      {{#RSVP-hyperlink}}
+                      <tr>
+                        <td><span class="table-label">RSVP</span> {{{ RSVP-hyperlink }}}</td>
+                      </tr>
+                      {{/RSVP-hyperlink}}
+                      {{#telephone-hyperlink}}
+                      <tr>
+                        <td><span class="table-label">Telephone</span> {{{ telephone-hyperlink }}}</td>
+                      </tr>
+                      {{/telephone-hyperlink}}
+                      {{#email-hyperlink}}
+                      <tr>
+                        <td><span class="table-label">Email</span> {{{ email-hyperlink }}}</td>
+                      </tr>
+                      {{/email-hyperlink}}
+                      {{#web-hyperlink}}
+                      <tr>
+                        <td><span class="table-label">Web</span> {{{ web-hyperlink }}}</td>
+                      </tr>
+                      {{/web-hyperlink}}
+                      {{/collection.event-details}}
+                    </table>
+                  </div><!-- end check-overflow -->
+                </div>                
+              </div> <!--end box-collection-->                                        
+              <div class="code">Outfit Job No: <span data-project-code></span></div>                            
+            </div>                        
+          </div>
+        </div>          
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed){
+        bleed.style.cssText = !!window.showCrop ?
+          'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        :
+        'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+      });
+
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-overflow'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function checkLimitedBox() {
+        Array.prototype.slice.call(document.querySelectorAll('.box-overflow'))
+          .forEach(function(e) {
+          const maxHeight = $(e).height();
+          const height = $(e).children('.box-inner').outerHeight();
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }      
+
+      function loop() {
+        checkLimitedText();
+        checkLimitedBox();
+        checkHeight(document.getElementsByClassName('check-overflow'));
+      } setInterval(loop, 1000);
+    </script>   
+    <script src="prefixfree.js"></script>
+
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/projectCode.1.0.0.js"></script>
+    <script>window.setProjectCode('[ID]');</script>   
+  </body>
+</html>

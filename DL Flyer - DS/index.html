@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="global.css">
+    
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css">
+    
+    <style>
+
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css');
+
+      body {
+        font-family: "Plantin MT Std", sans-serif;
+        color: #252525;
+      }
+
+      h1, h2, h3, h4 {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-weight: bold;  
+        line-height: 1.2em;
+        margin: 0.25em 0 0.7em;
+      }
+
+      h1 {
+        font-size: 39pt;
+        line-height: 0.9em;
+        text-transform: uppercase;
+        margin: 0 0 0.32em;
+        color: {{{ account.colors.dark-blue }}};
+      }
+
+      h2 {
+        font-size: 10.5pt;
+        color: {{{account.colors.primary}}};
+        font-weight: normal;
+        line-height: 1.2em !important;
+      }
+
+      h3 {
+        font-size: 9pt;
+      }
+
+      h4 {
+        font-size: 7.5pt;
+      }
+
+      p, ul, ol {
+        font-size: 8.5pt; 
+        margin: 0.25em 0 0.5em;
+      }
+
+      p {
+        margin-top: 0.8em;
+      }
+
+      ol li, 
+      ul li {  
+        padding-left: 5pt;
+        margin: 0.25em 0 0.5em;
+        position: relative;
+      }
+
+      ol li::before,
+      ul li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #D40000;
+      }
+
+      a {
+        font-weight: bold;
+        text-decoration: none;
+        color: inherit !important;
+      }
+
+      .image-container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .wrapper { 
+        display: -webkit-box;  
+        display: -ms-flexbox;  
+        display: flex;
+        flex-direction: column;  
+        height: 100%;
+        padding: 0;
+        position: relative;
+      }
+
+      .fit {
+        padding: 8mm;
+      }
+
+      .hero-image {
+        position: relative;
+        width: 100%;
+        height: 960pt;
+      }
+
+      .overlay {
+        background: rgba(167,169,172, 0.8);
+        mix-blend-mode: multiply;
+      }
+
+      .overlay.overlay-top-left {
+        clip-path: polygon(0 0, 100% 0, 100% 35mm, 18.5% 35mm, 18.5% 100%, 0 100%);  
+      }
+
+      .overlay.overlay-top-right {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 81.5% 100%, 81.5% 35mm, 0 35mm);
+      }
+
+      .overlay.overlay-bottom-right {
+        clip-path: polygon(calc(100% - 12mm) 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 20mm), calc(100% - 12mm) calc(100% - 20mm), calc(100% - 12mm) 0);
+      }
+
+
+      .overlay.overlay-bottom-left {
+        clip-path: polygon(0 0, 47% 0, 47% 68%, 100% 68%, 100% 100%, 0 100%);
+      } 
+
+      .logo {
+        width: 80pt;
+        height: 90pt;
+        position: absolute;
+        top: 5.3pt;
+        left: 17.2pt;
+        z-index: 2;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg');  
+      }
+
+      .logo.logo-black {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f51d18f3be6ad6a13b1bc40750f9201a/adelaide-logo-black.svg');
+      }
+
+      .main {
+        padding: 18pt 7pt;
+        position: relative;
+        height: 100%;
+      }
+      .main h1 {
+        line-height: 0.88571em !important;
+      }
+      .header {
+        max-height: 4em;
+      }
+
+      .subhead {
+        color: {{{account.colors.primary}}};
+        display: inline;
+        position: relative;
+        font-family: "Plantin MT Std", sans-serif;
+        font-weight: 600;
+        max-height: 4.5em;
+        /* background: linear-gradient(0deg, rgba(255,255,255,1) 19%, rgba(212,0,0,1) 19%, rgba(212,0,0,1) 24%, rgba(255,255,255,1) 24%); */      
+        padding: 0 !important;
+      }
+
+      .body-copy {
+        flex: 1;
+      }
+
+      .body h1:first-child,
+      .body h2:first-child,
+      .body h3:first-child,
+      .body h4:first-child,
+      .body h5:first-child,
+      .body h6:first-child,
+      .body ul:first-child,
+      .body ol:first-child,
+      .body p:first-child {
+        margin-top: 0!important;
+        padding-top: 0!important;
+      }
+
+      .url {
+        position: absolute;
+        bottom: 3pt;
+        font-size: 18pt;
+        letter-spacing: -0.02em;
+        color: {{{ account.colors.dark-blue }}};
+        margin: 0 auto;
+      }
+
+      .code {
+        font-family: "Bureau Grot", sans-serif;
+        position: absolute;
+        font-size: 6.5pt;
+        line-height: 7.8pt;
+        font-weight: 300;
+        transform: rotate(-90deg);
+        /*transform-origin: bottom left;*/
+        right: -26pt;
+        bottom: 65.6pt;
+        white-space: nowrap;  
+      }
+
+      /** Back page */
+      .back .main {
+        padding: 14mm 7mm 10mm 7mm;
+      }
+
+      .page.back .wrapper {
+        padding: 3mm;
+      }
+
+      .page.back .fit {
+        padding: 0;
+      }
+
+      .intro {
+        color: {{{account.colors.primary}}};
+        font-family: "Plantin MT Std", sans-serif;
+        font-weight: 600 !important;
+        margin-bottom: 33.5pt;
+        max-height: 6.2em;
+      }
+
+      .body {
+        max-height: 32em;
+      }
+
+      .box-inner h2 {
+        font-weight: bold;
+      }
+
+      .enquiries {  
+        font-family: "Bureau Grot Condensed", sans-serif;
+        margin-top: 23.5pt;
+      }
+
+      .enquiries h2 {
+        margin-bottom: 3pt;
+      }
+
+      .enquiry {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: 300;
+        font-size: 8pt;
+        margin: 0 0 1.8pt;
+      }
+
+      .enquiry label {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      h1 {
+        font-size: 39pt;
+        line-height: 36pt !important;
+        margin: 0 !important;
+        padding: 0 0 0.3em 0 !important;
+      }
+
+      h2 {
+        font-size: 10.5pt;
+        margin: 0 !important;
+        padding: 2mm 0 1.5mm 0 !important;
+      }
+
+      h3 {
+        font-size: 9pt;
+        line-height: 10.5pt;
+        margin: 0;
+        padding: 1.5mm 0;
+      }
+
+      h4 {
+        font-size: 7.5pt !important;
+        line-height: 9pt !important;
+        margin: 0 !important;
+        padding: 1mm 0 1.5mm 0 !important;
+      }
+
+      p {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0;
+        padding: 0 0 1.5mm 0;
+      }
+
+      .test {
+        opacity: .7;
+        z-index: 2;
+        position: absolute;
+        top: 3mm;
+        bottom: 3mm; 
+        left: 3mm;
+        right: 3mm;
+        pointer-events: none;
+      }
+      .page { background-color: white !important; }
+      /* .test.front.contain { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/babe9046e533342f4f9aaff1190db7d1/DL%20flyer%20DS.png'); }
+      .test.back.contain { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/c01c46631c724a74d585b2f01ee4fba4/DL%20flyer%20DS2.png'); } */
+
+      h2.intro,
+      .intro {
+        line-height: 19pt !important;
+        padding-bottom: 6mm !important;
+
+      }
+
+      /* Caption Additions 02/12/18 - LM */
+      .caption {
+        margin: 4mm 0 7mm 0; 
+      }
+      .caption__text {
+       	font-size: 7.5pt; 
+        font-style: italic;
+        padding: 0; 
+        line-height: 8.5pt;
+      }    
+      
+      .body a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+      
+      .enquiry a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+      
+    </style>
+  </head>
+  <body style="background: white">
+    <div class="page">
+      <div class="bleed">
+        <div class="test front contain"></div>
+        <div class="fit">
+          <div class="wrapper">
+            <div class="hero-image image-container">
+              {{{hero-image}}}
+              <div class="fit overlay overlay-{{ hero-image-overlay }}{{^hero-image-overlay}}top-left{{/hero-image-overlay}}"></div>
+              <div class="logo logo-{{logo-color}}{{^logo-color}}white{{/logo-color}} contain"></div>
+            </div>
+            <div class="main">
+              <h1 class="header text-overflow" style="font-size: {{ header-font-size }}{{^header-font-size}}35{{/header-font-size}}pt;">{{{ header }}}</h1>
+              <h2 class="subhead text-overflow" style="font-size: {{ subhead-font-size }}{{^subhead-font-size}}14{{/subhead-font-size}}pt;">{{{ subhead }}}</h2>
+              {{#url}}<h3 class="url">{{{url}}}</h3>{{/url}}{{^url}}<h3 class="url">adelaide.edu.au</h3>{{/url}}
+            </div>                        
+          </div>
+        </div>          
+      </div>
+    </div>
+
+    <div class="page back">
+      <div class="bleed">
+        <div class="test back contain"></div>
+        <div class="fit">
+          <div class="wrapper">            
+            <div class="main">              
+              <div class="body-copy box-overflow">
+                <div class="box-inner">
+
+
+                  <div class="body text-overflow" data-limit="710">
+                    {{ #collection.back_page_content }}
+                    {{#block.text-section}}
+                   {{#back-page-header}} <h1 class="header text-overflow" style="font-size: 39pt;">{{{ back-page-header }}}</h1>{{/back-page-header}}
+                  {{#intro-text}}  <h2 class="intro text-overflow" style="font-size: 15pt;">{{{ intro-text }}}</h2>{{/intro-text}}
+                    {{{ text }}}
+                    {{/block.text-section}}
+
+                    {{ /collection.back_page_content }}
+
+
+                    <div class="enquiries">
+                      {{#collection.further-information-collection}}
+                      <h2>For further information</h2>
+                      {{#address}}
+                      <p class="enquiry">                        
+                        <span>{{{ address }}}</span>
+                      </p>
+                      {{/address}}
+                      {{#enquiries}}
+                      <p class="enquiry">       
+                        <label>Enquiries</label>
+                        <span>{{{ enquiries }}}</span>
+                      </p>
+                      {{/enquiries}}
+                      {{#telephone}}
+                      <p class="enquiry">       
+                        <label>Telephone</label>
+                        <span>{{{ telephone }}}</span>
+                      </p>
+                      {{/telephone}}
+                      {{#free-call}}
+                      <p class="enquiry">       
+                        <label>Free Call</label>
+                        <span>{{{ free-call }}}</span>
+                      </p>
+                      {{/free-call}}
+                      {{#website-url}}
+                      <p class="enquiry">       
+                        <label>Website</label>
+                        <span>{{{ website-url }}}</span>
+                      </p>
+                      {{/website-url}}
+                      {{/collection.further-information-collection}}
+                    </div>   
+                  </div>
+                </div>  
+
+              </div>
+              
+              <div class="code">Outfit Job No: <span data-project-code></span> CRICOS: 00123M</div>
+            
+            </div>                        
+          </div>
+        </div>          
+      </div>
+    </div>        
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed){
+        bleed.style.cssText = !!window.showCrop ?
+          'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        :
+        'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+      });
+
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-overflow'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function checkLimitedBox() {
+        Array.prototype.slice.call(document.querySelectorAll('.box-overflow'))
+          .forEach(function(e) {
+          const maxHeight = $(e).height();
+          const height = $(e).children('.box-inner').outerHeight();
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function loop() {
+        checkLimitedText();
+        checkLimitedBox();
+      } setInterval(loop, 1000);
+
+      $(window).bind("load", function() {
+        // Document has been loaded..      
+      });
+    </script>   
+    <script src="prefixfree.js"></script>
+
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/projectCode.1.0.0.js"></script>
+    <script>window.setProjectCode('[ID]');</script>   
+  </body>
+</html>
