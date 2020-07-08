@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html data-sign="OS?">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+    
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css">
+
+    <style>
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+      
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+      
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+       body {
+        font-family: "Plantin MT Std", sans-serif;
+        background: #ffffff;
+        color: #252525;
+      }
+
+      h1, .h1, 
+      h2, .h2, 
+      h3, .h3, 
+      h4, .h4 {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-weight: bold;
+        line-height: 1.1em;
+        margin: 0 0 0.8em;
+      }
+
+      h1, .h1 {
+        font-size: 69pt;
+        line-height: 62pt;
+        text-transform: uppercase;  
+      }
+
+      h2, .h2 {
+        color: {{{ account.colors.primary }}};
+        font-size: 10.5pt;
+        line-height: 12pt;
+      }
+
+      h3, .h3 {
+        font-size: 9pt;
+        line-height: 10.5pt;
+      }
+
+      h4, .h4 {
+        font-size: 7.5pt;
+        line-height: 9pt;
+      }
+
+      p, ul, ol {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0 0 0.8em;
+      }
+
+      ol li, 
+      ul li {  
+        padding-left: 5pt;
+        margin: 0.25em 0 0.5em;
+        position: relative;
+      }
+
+      ol li::before,
+      ul li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #D40000;
+      }
+
+      a {
+        font-weight: bold;
+        text-decoration: none;
+        color: inherit !important;
+      }
+
+      .text-red { color: #D40000; }
+      .text-dark-blue { color: {{{ account.colors.dark-blue }}}; }
+      
+      .wrapper { 
+        display: -webkit-box; 
+        display: -ms-flexbox; 
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;  
+        height: 100%;
+        padding: 8mm;
+        position: relative;
+      }
+
+      .wrapper-inner {
+        display: flex;
+        flex-direction: column;
+        padding-top: 10mm;
+        border-top: solid 4pt #001c47;
+      }
+
+      .top {    
+        height: 177mm;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      .logo-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        padding: 9mm 7mm;
+      }
+
+      .logo {
+        width: 108pt;
+        height: 75pt;  
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg');  
+      }
+
+      .logo.logo-black {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f51d18f3be6ad6a13b1bc40750f9201a/adelaide-logo-black.svg');
+      }
+
+      .overlay {
+        background: rgba(167,169,172, 0.8);
+        mix-blend-mode: multiply;
+      }
+
+      .overlay.overlay-top-left {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 45mm, 25mm 45mm, 25mm 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 45mm, 25mm 45mm, 25mm 100%, 0 100%);
+      }
+      
+      .overlay.overlay-top-right {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, calc(100% - 25mm) 100%, calc(100% - 25mm) 45mm, 0 45mm);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, calc(100% - 25mm) 100%, calc(100% - 25mm) 45mm, 0 45mm);
+      }
+      
+      .overlay.overlay-bottom-right {
+        -webkit-clip-path: polygon(calc(100% - 25mm) 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 35mm), 86.5% calc(100% - 35mm) , 86.5% 0);
+        clip-path: polygon(calc(100% - 25mm) 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 35mm), 86.5% calc(100% - 35mm) , 86.5% 0);
+      }
+      
+      .overlay.overlay-bottom-left {
+        -webkit-clip-path: polygon(0 0, 53mm 0, 53mm calc(100% - 35mm), 100% calc(100% - 35mm), 100% 100%, 0 100%);
+        clip-path: polygon(0 0, 53mm 0, 53mm calc(100% - 35mm), 100% calc(100% - 35mm), 100% 100%, 0 100%);
+      }
+
+      .hero-image {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        width: auto;
+      }
+
+      .bottom {
+        height: 110mm;
+        padding: 6mm;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+
+      .header-wrapper {
+        padding: 5mm 0 5.4mm 0;  
+      }
+
+      .header .inner h1 {
+        margin: 0;
+        line-height: 0.9;
+        /* max-height: 1.8em; */
+      }
+
+      .subhead .inner h2 {
+        color: {{{ account.colors.primary }}};
+        display: inline;
+        line-height: 1.2em;
+        max-height: 2.1818em;
+        position: relative;
+        font-family: "Plantin MT Std", sans-serif;
+        font-weight: 600;
+        /* background: linear-gradient(0deg, rgba(255,255,255,1) 19%, rgba(212,0,0,1) 19%, rgba(212,0,0,1) 24%, rgba(255,255,255,1) 24%); */
+      }
+
+      .intro {
+        font-family: "Plantin MT Std", sans-serif;  
+        font-weight: normal;
+        font-size: 16pt;
+        line-height: 19pt;
+      }
+
+      .copy {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;  
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: 243mm;
+      }
+
+      .copy h1 {
+        font-family: "Plantin MT Std", sans-serif;  
+        font-weight: normal;
+        font-size: 15pt;
+        line-height: 19pt;
+        text-transform: none;
+        color: {{{ account.colors.primary }}};
+        margin-bottom: 6mm; 
+      }
+
+      .multi-columns {  
+        position: relative;
+        height: 100%;
+      	display:flex;
+        height: 100%;
+      }
+
+
+      .url {
+        position: absolute;
+        bottom: 35pt;
+        font-size: 22pt;
+        line-height: 0.8em;
+        letter-spacing: -0.02em;
+        margin: auto 0 0;
+      }
+
+      .code {
+        font-family: "Bureau Grot", sans-serif; 
+        font-size: 6.5pt;
+        line-height: 8pt;
+        font-weight: 300;
+        margin-top: 1em;
+      }
+
+      .disclaimer {
+        font-family: "Bureau Grot", sans-serif; 
+        font-size: 6pt;
+        line-height: 7.5pt;
+        font-weight: 300;
+        margin-top: 1.5em;
+      }
+
+      .disclaimer label, 
+      .disclaimer a { 
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-size: 8pt;
+        font-weight: bold;
+      }
+
+      .disclaimer a {   
+        text-transform: none;
+        font-size: 8pt;
+      }
+
+      .back .wrapper {
+        padding: calc(3mm + 24mm)  calc(3mm + 12mm) calc(3mm + 12mm);
+      }
+
+      /*
+      .crop .wrapper {
+      padding: 8mm;
+      }
+
+      .crop .back .wrapper {
+      padding: 27mm 15mm 15mm;
+      }
+      */
+
+      .enquiries-container {
+        width: 48%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      .enquiries h2 {
+        color: {{{ account.colors.dark-blue }}} !important;
+        text-transform: uppercase !important;
+        font-size: 12pt !important;
+        line-height: 12pt !important;
+        font-weight: bold !important;
+        margin: 0 0 4.5mm 0 !important;
+      }
+
+
+      .three-columns .enquiries-container {
+        width: 32%;
+      }
+
+      .enquiries {
+        font-family: "Bureau Grot Condensed", sans-serif;
+      }
+
+      .enquiries {
+        margin: 0;
+        padding: 0;
+        font-family: "Bureau Grot Condensed", sans-serif;
+      }
+      .enquiries h2 {  
+        color: #FEFEFF;
+        text-transform: uppercase;
+        font-size: 12pt;
+        line-height: 12pt;
+        font-weight: bold;
+        margin: 0 0 4.5mm 0
+      }
+
+      .line {
+        border-top: 1pt solid {{{ account.colors.dark-blue }}};
+        width: 100%;
+      }
+
+      .enquiry {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: 300 !important;
+        font-size: 8pt !important;
+        padding-top: 6pt !important;
+        padding-bottom: 2pt !important;
+        letter-spacing: 0.15px !important;
+      }
+
+      .enquiries .enquiry:first-of-type {
+        font-weight: normal;
+        padding-bottom: 2pt !important;
+        padding-top: 0 !important;
+        letter-spacing: 0.15px !important;
+      }
+
+      .enquiry label {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .enquiry i {
+        display: inline-block;
+        width: 3.96mm;
+        height: 3.96mm;  
+        margin-right: 1.5mm;
+        flex-shrink: 0;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .enquiry.no-icon {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        font-size: 8pt;
+        line-height: 9pt;
+        margin: 0;
+      }
+
+      .enquiry.no-icon label {
+        margin-right: 1mm; 
+      }
+
+      .enquiry.has-icon.enquiry.has-icon {
+        display: flex;
+        align-items: flex-end;
+        margin: 0;
+        line-height: 9pt;
+        padding-top: 2.3pt !important;
+        padding-bottom: 3.5pt !important;
+      }
+
+      .enquiry.has-icon span {
+        font-size: 8pt;
+        line-height: 7.5pt;
+        letter-spacing: 0.2px;
+        margin: 0;
+        padding: 0;
+      }
+
+      i.adelaide { background-image: url('icon-website.svg'); }
+      i.facebook { background-image: url('icon-facebook.svg'); }
+      i.twitter { background-image: url('icon-twitter.svg'); }
+      i.snapchat { background-image: url('icon-snapchat.svg'); }
+      i.instagram { background-image: url('icon-instagram.svg'); }
+      i.wechat { background-image: url('icon-wechat.svg'); }
+      i.weibo { background-image: url('icon-weibo.svg'); }
+
+      .code {
+        font-family: "Bureau Grot", sans-serif; 
+        font-size: 6.5pt;
+        line-height: 8pt;
+        font-weight: 300;
+        margin-top: 8pt;
+      }
+
+      .flex-container > *:last-child, .flex-container token-value > *:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      .flex-container h2 {
+        font-size: 10.5pt !important;
+        line-height: 12pt !important;
+        margin: 0 !important;
+        padding: 2mm 0 1.5mm 0 !important;
+      }
+
+      .flex-container h3 {
+        font-size: 9pt;
+        line-height: 10.5pt;
+        margin: 0;
+        padding: 1.5mm 0;
+      }
+
+      .flex-container h4 {
+        font-size: 7.5pt !important;
+        line-height: 9pt !important;
+        margin: 0 !important;
+        padding: 1mm 0 1.5mm 0 !important;
+      }
+
+      .flex-container p {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0;
+        padding: 0 0 1.5mm 0;
+      }
+
+      p {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0;
+        padding: 0 0 1.5mm 0;
+      }
+
+      .table-name {
+        font-size: 14pt !important;
+        line-height: 17pt !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+        color: {{{ account.colors.dark-blue }}} !important;
+        margin: 0 !important;
+        padding: 3pt 0 !important;
+      }
+      .table-head {
+        font-size: 12pt !important;
+        line-height: 17pt !important;
+        font-weight: bold !important;
+        color: {{{ account.colors.dark-blue }}} !important;
+        margin: 0 !important;
+        padding: 2pt 2pt 0 6pt !important;
+      }
+
+
+      table {
+        margin: 0;
+        width: 100%;
+      }
+
+      th {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        color: {{{ account.colors.dark-blue }}};
+        font-size: 12pt;
+        line-height: 14pt;
+        font-weight: bold;  
+      }
+
+      td {
+        font-family: "Plantin MT Std", sans-serif;  
+        font-size: 7.5pt;
+        line-height: 9pt;
+        font-weight: normal;  
+      }
+
+      th, td {
+        border-bottom: solid 1pt #D40000;
+      }
+
+      td {
+        padding: 2pt 2pt 1pt 2pt;
+      }
+
+      tr th:first-of-type {
+        padding-left: 0 !important;
+      }
+
+      tr td:first-of-type {
+        padding-left: 0;
+      }
+
+      th + th, td + td {
+        padding-left: 6pt;
+        border-left: solid 1pt #D40000;
+      }
+
+      span {
+        word-break: break-all;
+      }
+
+      /* Caption Additions 02/12/18 - LM */
+      .caption {
+        margin: -3mm 0 5mm 0; 
+      }
+      .caption__text {
+        font-size: 7.5pt; 
+        font-style: italic;
+        padding: 0; 
+        line-height: 8.5pt;
+      }
+
+      .enquiries a, .body-copy a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+      
+      .column-wrapper{
+        height: 100%;
+        max-height: 920px;
+        width:50%;
+      }
+       .column-wrapper:nth-child(3){
+        max-height: 540px;
+      }
+      
+      .column-wrapper:nth-child(1){
+        margin-right: 3.5mm ;
+      }
+       .column-wrapper:nth-child(2){
+        margin-left: 3.5mm ;
+      }
+      .column-wrapper:nth-child(3){
+        margin: 0 !important ;
+      }
+      
+      .column-wrapper:nth-child(1):nth-last-child(4),
+      .column-wrapper:nth-child(2):nth-last-child(3),
+      .column-wrapper:nth-child(3):nth-last-child(2),
+      .column-wrapper:nth-child(4):nth-last-child(1){
+        margin-right:3.5mm;
+        margin-left: 0 !important;
+      }
+      
+      .column-wrapper .body-copy{
+        width:100%;
+      }
+      
+      .column-wrapper:nth-child(1):nth-last-child(2),
+      .column-wrapper:nth-child(2):nth-last-child(1){
+        max-height: 0px !important;
+      }
+
+      .enquiries-container:nth-child(4){
+        width:32.33% !important;
+      }
+      
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page front">
+      <div class="bleed">
+        <div class="fit">
+          <div class="wrapper">
+            <div class="top">              
+              <div class="logo-wrapper">
+                <div class="logo logo-{{logo-color}}{{^logo-color}}white{{/logo-color}} contain"></div>
+              </div>
+              <div class="hero-image image-container reposition-fix">
+                <div>
+                {{{hero-image}}}
+                </div>
+                <div class="fit overlay overlay-{{ hero-image-overlay }}{{^hero-image-overlay}}top-left{{/hero-image-overlay}}"></div>                
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="header-wrapper">
+                <div class="header text-dark-blue">
+                  <div class="inner">
+                    <h1 data-limit="2" style="font-size: {{header-font-size-2}}{{^header-font-size-2}}70{{/header-font-size-2}}pt;">{{{ header }}}</h1>
+                  </div>
+                </div>
+              </div>
+              <div class="subhead-wrapper">
+                <div class="subhead text-red">
+                  <div class="inner">
+                    <h2 data-limit="2" style="font-size: {{subhead-font-size-2}}{{^subhead-font-size-2}}22{{/subhead-font-size-2}}pt;">{{{ subhead }}}</h2>
+                  </div>
+                </div>
+              </div>
+              {{#url}}
+              <h2 class="url text-dark-blue">{{{url}}}</h2>
+              {{/url}}
+            </div>                        
+          </div>
+        </div>          
+      </div>
+    </div>
+
+    <div class="page back">
+      <div class="bleed">
+        <div class="fit">
+          <div class="test contain"></div>
+          <div class="wrapper">
+            <div class="wrapper-inner">
+              <div class="copy text-overflow">
+                <div class="inner multi-columns ">
+                  {{#collection.columns}}
+                  {{#block.column}}
+                  <div class="column-wrapper" data-max-height="css">
+                    {{#collection.column-content}}
+
+                    {{#block.uoa-copy-block}}<div class="body-copy">{{{ uoa-copy }}}</div>{{/block.uoa-copy-block}}
+
+                    {{#block.uoa-image-block}}
+                    <img src="{{{ uoa-images }}}">
+                    <div class="caption">
+                      <p class="caption__text" data-limit="3">{{{ caption }}}</p>
+                    </div>
+                    {{/block.uoa-image-block}}
+
+                    {{/collection.column-content}}
+                  </div>
+                  {{/block.column}}
+                  {{/collection.columns}}
+
+                  <div class="enquiries-container">
+                    <div class="enquiries">
+                      <div class="enquiries">
+                        {{#collection.further-information-collection}}
+                        <h2>{{{ table-name }}}</h2>
+                        {{#address}}
+                        <p class="enquiry">                        
+                          <span>{{{ address }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/address}}
+
+                        {{#enquiries}}
+                        <p class="enquiry">       
+                          <label>Enquiries</label>
+                          <span>{{{ enquiries }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/enquiries}}
+
+                        {{#telephone}}
+                        <p class="enquiry">       
+                          <label>Telephone</label>
+                          <span>{{{ telephone }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/telephone}}
+
+                        {{#free-call}}
+                        <p class="enquiry">       
+                          <label>Free Call</label>
+                          <span>{{{ free-call }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/free-call}}
+
+                        {{#adelaide}}
+                        <p class="enquiry has-icon">
+                          <i class="adelaide"></i>
+                          <span>{{{ adelaide }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/adelaide}}
+
+                        {{#facebook}}
+                        <p class="enquiry has-icon">
+                          <i class="facebook"></i>
+                          <span>{{{ facebook }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/facebook}}
+
+                        {{#twitter}}
+                        <p class="enquiry has-icon">
+                          <i class="twitter"></i>
+                          <span>{{{ twitter }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/twitter}}
+
+                        {{#snapchat}}
+                        <p class="enquiry has-icon">
+                          <i class="snapchat"></i>
+                          <span>{{{ snapchat }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/snapchat}}
+
+                        {{#instagram}}
+                        <p class="enquiry has-icon">
+                          <i class="instagram"></i>
+                          <span>{{{ instagram }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/instagram}}
+
+                        {{#wechat}}
+                        <p class="enquiry has-icon">
+                          <i class="wechat"></i>
+                          <span>{{{ wechat }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/wechat}}
+
+                        {{#weibo}}
+                        <p class="enquiry has-icon">
+                          <i class="weibo"></i>
+                          <span>{{{ weibo }}}</span>
+                        </p>
+                        <div class="line"></div>   
+                        {{/weibo}}
+
+                        {{/collection.further-information-collection}}
+                      </div>  
+                      <div class="code">Outfit Job No: <span data-project-code></span> CRICOS 00123M</div>
+                      <div class="inner disclaimer">
+                        <label>Disclaimer</label> {{{uoa-disclaimer}}}
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                </div>
+              </div>    
+            </div>
+          </div>
+        </div>          
+      </div>
+    </div>
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+      
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+      
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+      
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="global.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css">
+    <style>
+      
+      h1 {
+        font-size: 39pt;
+        line-height: 0.9em;
+        text-transform: uppercase;
+        margin: 0 0 0.3em;
+        color: {{{ account.colors.dark-blue }}};
+      }
+      
+      .page { background-color: white !important; }
+
+      .test {
+        display: none !important;
+        /* background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/491dada15bd41ef9f7f1091c1327534d/Invitation%20SS%20P_Version%20B.png'); */
+        position: absolute;
+        opacity: .7;
+        z-index: 2;
+        background-position: center;
+        background-position: center;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .subhead {
+        display: none;
+      }
+
+      .u-subhead-impact .subhead.subhead-impact {
+        display: block;
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-size: 34pt;
+        font-weight: normal;
+        max-height: 2.4em;
+        position: absolute;
+        top: 16.1rem;
+        right: 0.9em;
+        z-index: 2;
+        padding: 10px 15px 17px;
+        font-weight: bold;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+        border: 3pt solid #D40000;
+      }
+
+      .u-subhead-subtle .main {
+        padding: 29pt 0 0 0;
+      }
+
+      .u-subhead-subtle .subhead.subhead-subtle {
+        display: inline;
+      }      
+
+      .u-subhead-impact .main {
+        padding: 52pt 0 0 0;
+      }
+
+      .further-info-label {
+        color: {{{ account.colors.dark-blue }}};
+      }
+      
+      .further-info a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+      
+      h2.subhead-impact  {
+        color: white !important;
+      }
+      
+
+    </style>
+  </head>
+  <body style="background: white" class="{{ invitation-wordmark-positon }}{{ ^invitation-wordmark-positon }}u-subhead-subtle{{ /invitation-wordmark-positon }}">
+    <div class="page">
+      <div class="bleed">
+
+        <div class="fit">
+          <div class="test contain"></div>
+          <div class="wrapper">
+            <h2 class="subhead subhead-impact text-overflow">{{{ subhead }}}</h2>
+            <div class="hero-image image-container">
+              {{{hero-image}}}
+              <div class="fit overlay overlay-{{ hero-image-overlay }}{{^hero-image-overlay}}top-left{{/hero-image-overlay}}"></div>
+              <div class="logo logo-{{logo-color}}{{^logo-color}}white{{/logo-color}} contain"></div>
+            </div>
+            <div class="main">
+              <h2 class="subhead subhead-subtle text-overflow">{{{ subhead }}}</h2>
+
+              <div style="margin: 7pt 0 16.5pt 0; font-size: {{ main-header-font-size }}{{^main-header-font-size}}26{{/main-header-font-size}}pt;">
+                <div style="max-height: 3.2em; overflow: hidden;">
+                  <div class="check-overflow">
+                    <h1 class="header" style="font-size: {{ main-header-font-size }}{{^main-header-font-size}}26{{/main-header-font-size}}pt;">{{{ header }}}</h1>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div style="max-height: 18em;">
+                  <div class="check-overflow">
+                    {{{ copy }}}       
+                    <table class="further-info">
+                      {{#collection.event-details}}
+                      {{#when-hyperlink}}<tr><td><span class="further-info-label">When</span>{{{ when-hyperlink }}}</td></tr>{{/when-hyperlink}}
+                      {{#where-hyperlink}}<tr><td><span class="further-info-label">Where</span>{{{ where-hyperlink }}}</td></tr>{{/where-hyperlink}}
+                      {{#RSVP-hyperlink}}<tr><td><span class="further-info-label">RSVP</span>{{{ RSVP-hyperlink }}}</td></tr>{{/RSVP-hyperlink}}
+                      {{#telephone-hyperlink}}<tr><td><span class="further-info-label">Telephone</span>{{{ telephone-hyperlink }}}</td></tr>{{/telephone-hyperlink}}
+                      {{#email-hyperlink}}<tr><td><span class="further-info-label">Email</span>{{{ email-hyperlink }}}</td></tr>{{/email-hyperlink}}
+                      {{#web-hyperlink}}<tr><td><span class="further-info-label">Web</span>{{{ web-hyperlink }}}</td></tr>{{/web-hyperlink}}
+                      {{/collection.event-details}}
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="code">Outfit Job No: <span data-project-code></span></div>
+            </div>                        
+          </div>
+        </div>          
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed){
+        bleed.style.cssText = !!window.showCrop ?
+          'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        :
+        'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+      });
+
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-overflow'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function checkLimitedBox() {
+        Array.prototype.slice.call(document.querySelectorAll('.box-overflow'))
+          .forEach(function(e) {
+          const maxHeight = $(e).height();
+          const height = $(e).children('.box-inner').outerHeight();
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }      
+
+      function loop() {
+        checkLimitedText();
+        checkLimitedBox();
+        checkHeight(document.getElementsByClassName('check-overflow'));
+      } setInterval(loop, 1000);
+    </script>   
+    <script src="prefixfree.js"></script>
+
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/projectCode.1.0.0.js"></script>
+    <script>window.setProjectCode('[ID]');</script> 
+  </body>
+</html>
