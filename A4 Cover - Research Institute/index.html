@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div class="page">
+         <div class="bleed">
+           	<div class="bleed-inner">
+            <div class="placeholder"></div>
+            <div class="page-inner">
+               <div class="background-image"></div>
+               <div class="content">
+                  <div class="content-top">
+                     <div class="logo-container">
+                        <img class="logo" src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg">
+                     </div>
+                     <div class="subheading-container">
+                        <div class="subheading">{{{ subheading }}}</div>
+                        <img class="icon">
+                     </div>
+                  </div>
+                  <div class="content-bottom">
+                     <div class="heading">
+                        Australian
+                        <br>institute for
+                        <br>machine learning
+                     </div>
+                     <div class="url"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+        </div>
+      <script>     
+         var setTeam = function() {
+           var bg, icon, heading, headingSize, slug;
+           switch('{{{team.name}}}') {
+             case 'Australian Institute for Machine Learning':
+                 heading = 'Australian<br>institute for<br>machine learning';
+               headingSize = 'auto';
+                 slug = 'aiml';
+                 break;  
+             case 'Environment Institute':
+                 heading = 'Environment<br>institute';
+                 headingSize = '6.7em';
+                 slug = 'ei';
+                 break;  
+             case 'Institute for Mineral and Energy Resources':
+                 heading = 'Institute<br>for mineral<br>and energy<br>resources';
+               headingSize = '6.2em'
+                 slug = 'imer';
+                 break;  
+             case 'Institute for Photonics and Advanced Sensing':
+                 heading = 'Institute for<br>photonics<br>and advanced sensing';
+                 headingSize = '6.2em';
+                 slug = 'ipas';
+                 break;  
+             case 'Robinson Research Institute':
+                 heading = 'Robinson<br>Research<br>Institute';
+                       headingSize = 'auto';
+                 slug = 'rri';
+                 break;  
+             case 'Waite Research Institute':
+                 heading = 'Waite<br>Research<br>Institute';
+                 headingSize = '6.7em'
+                 slug = 'wri';
+                 break;
+           }	
+           
+           icon = '{{{team.badge}}}';
+           bg = '{{{team.riCoversBackground}}}'
+           
+           {{^team.name}}
+           	   bg="https://files.outfit.io/media_library_items/114816/Default%2520Blue.png";
+               icon = "https://files.outfit.io/media_library_items/63615/Untitled%2520drawing%2520%25289%2529.png";
+               heading = "Institute Name Goes Here";
+               slug="institute-url"
+           {{/team.name}}
+           
+           
+           
+           document.querySelector('.heading').innerHTML = heading;
+           document.querySelector('.heading').style.fontSize = headingSize;
+           document.querySelector('.background-image').style.backgroundImage = "url('" + bg + "')";
+           document.querySelector('.icon').src = icon;
+           document.querySelector('.url').innerHTML = 'adelaide.edu.au/' + slug;
+         }
+         setTeam();
+
+        window.showCrop = '{{{show-crop}}}' === 'true';
+        	
+       document.querySelector('body').setAttribute('data-cropmarks', window.showCrop ? 'true' : 'false');
+     </script>
+      <script src="main.js"></script>
+   </body>
+</html>

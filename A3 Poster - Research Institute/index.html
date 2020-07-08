@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html data-sign="OSB">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css');
+
+      html {
+        font-size: 11pt;
+        color: #000;
+      }
+
+      a {
+        text-decoration: none;
+        color: {{{ account.colors.dark-blue }}};
+      }	
+
+      h1 {
+        font-weight: bold; 
+      }
+
+      .overflow {
+        border: none;
+        box-shadow: 0 0 0 0.0362rem red;
+        background: rgba(255, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;}
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 0.1rem;
+        right: 0.1rem;
+        height: .3107rem;
+        width: .3107rem;
+        border: 0.01rem solid red;
+        color: red;
+        padding: 0.01rem 0.01rem 0.01rem 0.0155rem;
+        box-sizing: border-box;
+        font-size: 0.2279rem;
+        text-align: center;
+        line-height: .2693rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 0.5rem;
+        right:  0.1rem;
+        background-color: black;
+        color: white;
+        border-radius: 0.01rem;
+        padding: 0.2rem 0.2rem;        
+        box-sizing: border-box;
+        font-size: 0.35rem;
+        font-weight: 400;     
+        text-align: right;
+        width: 6rem;
+        line-height: 0.45rem;
+      }
+
+      .overflow[data-char-limit]:hover:after {
+        content: 'Character limit exceeded';        
+      } 
+
+      .is-export-mode .placeholder__container,
+      .is-export-mode .placeholder__trigger {
+        display: none;
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        padding: 31pt 30pt;
+      }
+
+      .exportID {
+        position: absolute;
+        z-index: 9999;
+        font-size: 6.5pt;
+        right: -13px;
+        top: -14.5pt;
+        font-family: 'Bureau Grot';
+        font-weight: 300;
+      }
+
+      .outfitJob {
+        position: absolute;
+        z-index: 9999;
+        right: 41pt;
+        top: -14pt;
+        font-size: 6.5pt;
+        font-family: 'Bureau Grot';
+        font-weight: 300;
+      }
+
+      .hero {
+        position: relative;
+        height: 678pt;
+        flex-shrink: 0;
+      }
+
+      .hero__image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .logo {
+        position: absolute;
+        top: 34pt;
+        left: 28.2pt;
+        width: 170pt;
+      }
+
+      .logo--black,
+      .logo--red {
+        display: none;
+      }
+
+      .black .logo--white,
+      .red .logo--white {
+        display: none;
+      }
+
+      .black .logo--black {
+        display: block;
+      }
+      
+      .red .logo--red {
+        display: block;
+      }      
+
+      .hero__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+      }
+
+      .hero__frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .hero__frame {
+        background: rgba(167,169,172, 0.8);
+        mix-blend-mode: multiply; 
+      }
+
+      .hero__frame--topLeft {
+        clip-path: polygon(0 0, 100% 0, 100% 28%, 14% 28%, 14% 100%, 0 100%);
+      }
+
+      .hero__frame--topRight {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 86% 100%, 86% 28%, 0 28%);
+      }
+
+      .hero__frame--bottomRight {
+        clip-path: polygon(86.7% 0, 100% 0, 100% 100%, 0 100%, 0  88.6%, 85.2% 88.6%, 85.2% 0);
+      }
+
+      .hero__frame--bottomLeft {  
+        clip-path: polygon(0 0, 28% 0, 28% 88.6%, 100% 88.6%, 100% 100%, 0 100%);
+      }
+
+      .badge__container {
+        position: absolute;
+        top: 292pt;
+        right: -1pt;
+        height: 264pt;
+        width: 302pt;
+      }
+
+      .badge__slider{
+        position: relative;
+        height: 176.3pt;
+        background: #ffff;
+        transform: translateY(-100%);
+      }
+
+      .badge__text {
+        position: absolute !important; /* Adding !important because of the overflow class that will be added if max-line is exceeded */
+        bottom: 15pt;
+        left: 19pt;
+        width: 55%;
+        font-family: 'Plantin MT Std';
+        font-size: 22.1pt;
+        font-weight: 600;
+        color: #111e45;
+        line-height: 1em;
+      }
+
+      .badge {
+        position: absolute;
+        right: 0;
+        top: 11pt;
+        max-width: 94pt;
+      }
+
+      .body {
+        flex: 1;
+        position: relative;
+        padding: 55pt 13pt 0pt; 
+      }
+
+      .heading {
+        margin-bottom: 17.7pt;
+        color: {{account.colors.dark-blue}};
+        font-family: 'Bureau Grot Condensed';
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 80.4pt;
+      }
+      
+      .heading h1 {
+        line-height: 0.9em;        
+      }
+
+      .heading--marginBottom {
+        margin-bottom: 29pt;
+      }
+
+      .subheading {
+        margin-bottom: 26pt;
+        color: {{account.colors.blue-dark}};  
+        font-size: 35.6pt;
+        font-family: 'Plantin MT Std';
+        font-weight: 600;
+        letter-spacing: 0.1pt;        
+      }
+      
+      .subheading h2 {
+        line-height: 1.2;
+        font-weight: 600;
+      }      
+
+      .content {
+        margin-top: -5pt; /* Neutralizing the first paragraph top margin */
+        width: 60%;
+        color: {{account.colors.colour-black}};
+        font-size: 14.2pt;
+        line-height: 1.35em;  
+        font-weight: 300;
+        font-family: 'Plantin MT Std';
+      }
+      
+      .content p {
+        margin: 5pt 0;
+      }
+      
+      .content p + p {
+        margin-top: 8pt;
+      }
+
+      .url {
+        position: absolute;
+        bottom: 13pt;
+        left: 16pt;
+        width: 60%;
+        color: {{account.colors.dark-blue}};
+        font-family: 'Bureau Grot Condensed';
+        font-size: 31.2pt;
+        line-height: 0.8em;
+        letter-spacing: -0.6pt;
+        font-weight: bold;
+      }
+
+      .eventDetails {
+        position: absolute;
+        bottom: 15pt;
+        right: 13mm;
+        width: 265pt;
+      }
+
+      .eventDetails__item {
+        display: flex;
+        padding-bottom: 5pt;
+        padding-top: 5pt;
+        border-bottom: 1pt solid {{account.colors.dark-blue}};   
+        font-family: 'Bureau Grot';
+        font-weight: 300;
+        font-size: 13pt;
+        color: {{account.colors.dark-blue}};
+      }
+
+      .eventDetails__label {
+        margin-right: 4pt;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.4pt;
+      }
+
+      .eventDetails__value {
+        color: {{account.colors.brand-grey}};
+        font-weight: 300;
+        font-size: 13pt;
+      }
+
+      .u-margin-bottom .heading {
+        margin-bottom: 2rem;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle }}{{^placeholder-toggle}}hide{{/placeholder-toggle}} {{{ UOA_logo-extended--ps }}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit">
+
+          <div class="hero">
+            <p class="exportID">Outfit Export ID:{{#metadata}} {{export_id}} {{/metadata}}| CRICOS CODE: {{{team.cricos}}}</p>
+            <div class="hero__image"> {{{ UOA_backgroundImage--ps }}} </div> <!-- hero__image -->
+            <div class="hero__frame hero__frame--{{ UOA_hero-frame--ps }}{{ ^UOA_hero-frame--ps }}bottomRight{{ /UOA_hero-frame--ps }}"></div><!-- end logo__frame -->
+            <img src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f51d18f3be6ad6a13b1bc40750f9201a/adelaide-logo-black.svg" class="logo logo--black" /> <!-- logo -->
+            <img src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg" class="logo logo--white" /> <!-- logo -->
+            <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/3b03aaf3411751387fe51392b1030b66/logo-white-red.svg" class="logo logo--red" /> <!-- logo -->
+            <div class="badge__container">
+              <div class="badge__slider" style="top: {{{ UOA_badge-location--ri }}}%">
+                <div class="badge__text" data-max-line="4"> 
+                  {{{ UOA_badge-text--ps }}}
+                </div> <!-- badge__text-->
+                <img src="{{{ team.badge }}}" class="badge" />
+              </div> <!-- badge__slider -->
+            </div> <!-- badge__container -->
+          </div><!-- hero -->
+          <div class="body">       
+            <div style="max-height: 6.1rem;">  
+              <div class="check-overflow">                                        
+                {{#UOA_header1--ps}}
+                <div class="heading {{ ^UOA_subheading1--ps }}heading--marginBottom{{ /UOA_subheading1--ps }}">
+                  <div style="font-size: {{UOA_headline-size}}{{^UOA_headline-size}}100{{/UOA_headline-size}}%;">
+                    <div style="max-height: 3.7em;">  
+                      <div class="check-overflow">
+                        {{{ UOA_header1--ps }}}
+                      </div><!-- end check-overflow -->
+                    </div><!-- end max-height -->
+                  </div><!-- end font-size div -->
+                </div> <!-- heading -->
+                {{/UOA_header1--ps}}
+                {{#UOA_subheading1--ps}}
+                <div class="subheading">
+                  <div style="font-size: {{UOA_subheading-size}}{{^UOA_subheading-size}}100{{/UOA_subheading-size}}%;">
+                    <div style="max-height: 4em;">  
+                      <div class="check-overflow">
+                        {{{ UOA_subheading1--ps }}}
+                      </div><!-- end check-overflow -->
+                    </div><!-- end max-height -->
+                  </div><!-- end subheading font-size div -->
+                </div> <!-- subheading -->
+                {{/UOA_subheading1--ps}}
+                {{#UOA_body-copy1--ps}}
+                <div class="content">
+                  {{{ UOA_body-copy1--ps }}}                                   
+                </div> <!-- content -->
+                {{/UOA_body-copy1--ps}}              
+              </div><!-- end check-overflow -->
+            </div><!-- end max-height -->
+            <div class="url">
+              <div style="max-height: 1.4em;">
+                <div class="check-overflow">
+                  {{{ UOA_url--ps }}}
+                </div><!-- end check-overflow -->
+              </div><!-- end max-height -->
+            </div> <!-- url -->
+            {{#collection.UOA_event-details--ri}}
+            <div class="eventDetails">  
+              {{#UOA_date--ri}}
+              <div class="eventDetails__item">
+                <div class="eventDetails__label">date</div><!--eventDetails__label-->
+                <div class="eventDetails__value">{{{ UOA_date--ri }}}</div><!--eventDetails__value-->
+              </div><!--eventDetails__item-->
+              {{/UOA_date--ri}}
+              {{#UOA_location--ri }}
+              <div class="eventDetails__item">
+                <div class="eventDetails__label">location</div><!--eventDetails__label-->
+                <div class="eventDetails__value">{{{ UOA_location--ri }}}</div><!--eventDetails__value-->
+              </div><!--eventDetails__item-->
+              {{/UOA_location--ri }}
+              {{#UOA_enquiries--ri}}
+              <div class="eventDetails__item">
+                <div class="eventDetails__label">enquiries</div><!--eventDetails__label-->
+                <div class="eventDetails__value">{{{ UOA_enquiries--ri }}}</div><!--eventDetails__value-->
+              </div><!--eventDetails__item-->
+              {{/UOA_enquiries--ri}}
+              {{#UOA_telephone--ri}}
+              <div class="eventDetails__item">
+                <div class="eventDetails__label">telephone</div><!--eventDetails__label-->
+                <div class="eventDetails__value">{{{ UOA_telephone--ri }}}</div><!--eventDetails__value-->
+              </div><!--eventDetails__item-->
+              {{/UOA_telephone--ri}}
+              {{/collection.UOA_event-details--ri}}
+            </div> <!-- body -->
+
+          </div><!--container fit-->
+
+        </div><!--bleed-->
+
+      </div><!--page-->
+
+
+      <script>
+        window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+      </script>
+      <script src="main.js"></script>   
+      <script src="prefixfree.js"></script>
+      <script src="placeholder-controller.js"></script>
+      <script src="char-limit.js"></script>
+      <script src="check-export-mode.js"></script>
+      <script src="check-height.js"></script>    
+      <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+      <script>
+        function loop() {
+          checkHeight(document.getElementsByClassName('check-overflow'));
+        } setInterval(loop, 1000);  
+
+        // Fix for the resizable background images - fullscreen and digital vairaitons only
+        function checkCrop() {
+          if (window.showCrop === true) {
+          } else {
+            [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+              el.parentNode.style.left = '0';
+              el.parentNode.style.right = '0';
+              el.parentNode.style.top = '0';
+              el.parentNode.style.bottom = '0';
+              el.parentNode.style.width = '100%';
+              el.parentNode.style.height = '100%';
+            });
+          }
+        }
+
+
+        function maxLineCheck() {
+          const textBlocks = document.querySelectorAll('[data-max-line]');
+          textBlocks.forEach(block => {
+            const computedStyle = window.getComputedStyle(block);
+            // Checking if line-height is not set and has a normal value set by default
+            // That value is Nan
+            const isNormal = computedStyle.getPropertyValue('line-height') == 'normal';
+            // Getting the font-size of an element that will help us calculate the line-height
+            // if the line-height is set to 'normal'
+            const fontSize = parseFloat(computedStyle.getPropertyValue('font-size'));
+            // If line-height is normal, we multiply the element's font-size with 1.14
+            // otherwise we get the element's line-height
+            const lineHeight = isNormal ? (fontSize * 1.14) : parseFloat(computedStyle.getPropertyValue('line-height'));
+            const blockHeight = block.scrollHeight;
+            // Getting the data-max-line attribute value (max number of lines allowed)
+            const maxLine = block.dataset.maxLine;
+            // Setting the element's max-height 
+            block.style.maxHeight = lineHeight * maxLine + 'px';
+            // Adding an 'overflow' class to an element if it's offset height exceedes the max-line-height
+            if ( blockHeight > (lineHeight * maxLine) + (lineHeight / 2) ) {
+              block.classList.add('overflow');
+            } else {
+              block.classList.remove('overflow');
+            }
+          });
+        }
+
+        const mutationObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            maxLineCheck();  
+          });
+        });      
+
+        mutationObserver.observe(document.querySelector('.fit'), {
+          attributes: false,
+          characterData: true,
+          childList: true,
+          subtree: true,
+          attributeOldValue: false,
+          characterDataOldValue: true
+        });       
+
+        maxLineCheck();             
+        placeholderController();
+        checkCrop();  
+        checkExport(); 
+        charLimit();
+
+        // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+        /*
+      TextFit.fit({
+        selector: '.textFit'
+      });      
+      */
+
+      </script>
+
+
+      </body>
+    </html>
