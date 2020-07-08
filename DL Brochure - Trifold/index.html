@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css">
+    <style type="text/css"> 
+
+      .test {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/acb653e150956e3fb3ebd3c750ece4a2/DL%20brochure%20Option%20A_markup_Page_1.png');
+        opacity: 0.2;
+        pointer-events: none;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .test-2 {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/25d1e54755986f811b3264c196c8b35a/DL%20brochure%20Option%20A_markup_Page_2.png');
+        opacity: 0.2;
+        pointer-events: none;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .foldMark1 { transform: rotate(270deg); top: -9px; left: 99mm; }
+      .foldMark2 { transform: rotate(270deg); top: -9px; left: 198mm; }
+      .foldMark3 { bottom: -9px; left: 99mm; }
+      .foldMark4 { bottom: -9px; left: 198mm; }
+
+      .page { background-color: white !important; }
+
+      /*
+      .page.spread .foldMark1 { transform: rotate(180deg); top: -9px; right: 99mm; left: auto; }
+      .page.spread .foldMark2 { transform: rotate(180deg); top: -9px; right: 198mm; left: auto; }
+      .page.spread .foldMark3 { transform: rotate(90deg); bottom: -9px; right: 99mm; left: auto; }
+      .page.spread .foldMark4 { transform: rotate(90deg); bottom: -9px; right: 198mm; left: auto; } 
+      */
+
+      @media screen {
+
+        .main-guide { border: 1px solid cyan; height: calc(100% - 20pt); }
+
+        .left-border { height: 100%; border: 1px solid cyan; }
+
+        .left { border-right: 1px solid blue; }
+        .right { border-left: 1px solid blue; }
+
+        .line-1 { position: absolute; top: 20.2mm; bottom: 17.2mm; left: 13mm; width: 1px; background-color: cyan; }
+        .line-2 { position: absolute; top: 20.2mm; bottom: 17.2mm; left: 90.9mm; width: 1px; background-color: cyan; }
+        .line-3 { position: absolute; top: 0; bottom: 0; left: 101.8mm; width: 1px; background-color: blue; }
+        .line-4 { position: absolute; top: 20.2mm; bottom: 17.2mm; left: 112.5mm; width: 1px; background-color: cyan; }
+        .line-5 { position: absolute; top: 20.2mm; bottom: 17.2mm; left: 190.176mm; width: 1px; background-color: cyan; }
+        .line-6 { position: absolute; top: 0; bottom: 0; left: 200.8mm; width: 1px; background-color: blue; }      
+        .line-7 { position: absolute; top: 20.2mm; bottom: 17.2mm; left: 212.1mm; width: 1px; background-color: cyan; }  
+        .line-8 { position: absolute; top: 20.2mm; bottom: 17.2mm; left: 289.9mm; width: 1px; background-color: cyan; } 
+
+        .back-page-columns .box-inner { border: 1px solid cyan; }
+
+      }
+
+      @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css');
+
+      body {
+        font-family: "Plantin MT Std", sans-serif;
+        color: #252525;
+      }
+
+      h1, h2, h3, h4 {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        font-weight: bold;  
+        line-height: 1.2em;
+        margin: 0.25em 0 0.5em;
+      }
+
+      h1 {
+        font-size: 39pt;
+        line-height: 0.9em;
+        text-transform: uppercase;
+        margin: 0 0 0.15em;
+        color: {{{ account.colors.dark-blue }}};
+      }
+
+      h2 {
+        font-size: 10.5pt;
+        color: {{{account.colors.primary }}};
+	 
+      }
+
+
+      h3 {
+        font-size: 9pt;
+      }
+
+      h4 {
+        font-size: 7.5pt;
+      }
+
+      p, ul, ol {
+        font-size: 8.5pt; 
+        margin: 0.25em 0 0.5em;
+      }
+
+      ol li, 
+      ul li {  
+        padding-left: 5pt;
+        margin: 0.25em 0 0.5em;
+        position: relative;
+      }
+
+      ol li::before,
+      ul li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #D40000;
+      }
+
+      a {
+        font-weight: bold;
+        text-decoration: none;
+        color: inherit !important;
+      }
+
+      table {
+        width: 100%;
+        margin: 10pt 0;
+      }
+
+      th {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        color: {{{ account.colors.dark-blue }}};
+        font-size: 12pt;
+        line-height: 14pt;
+        font-weight: bold;  
+      }
+
+      td {
+        font-family: "Plantin MT Std", sans-serif;  
+        font-size: 7.5pt;
+        line-height: 9pt;
+        font-weight: normal;  
+      }
+
+      th, td {
+        border-bottom: solid 1pt #D40000;
+      }
+
+      td {
+        padding: 2pt 2pt 1pt 2pt;
+      }
+
+      tr th:first-of-type {
+        padding-left: 0 !important;
+      }
+
+      tr td:first-of-type {
+        padding-left: 0;
+      }
+
+      th + th, td + td {
+        padding-left: 6pt;
+        border-left: solid 1pt #D40000;
+      }
+
+      span {
+        word-break: break-all;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      .text-blue {
+        color: {{{ account.colors.dark-blue }}};
+      }
+
+      .text-dark-blue {
+        color: {{{ account.colors.dark-blue }}};
+      }
+
+      .image-container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .wrapper { 
+        display: -webkit-box;  
+        display: -ms-flexbox;  
+        display: flex;
+        -webkit-box-align: stretch;  
+        -ms-flex-align: stretch;  
+        align-items: stretch;
+        height: 100%;
+        position: relative;
+      }
+
+      .left {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 99mm;
+        padding: 17mm 10mm 14mm 10mm;
+      }
+
+      .quote-section {
+        border: solid 5pt #D40000;
+        padding: 5.7mm 6.5mm 5.7mm 5.5mm;
+        margin: 10pt 0;
+      }
+      .quote-section p {
+        color: {{{ account.colors.dark-blue }}};
+        font-weight: 600;
+      }
+      .quote { 
+        font-family: "Bureau Grot Condensed", sans-serif; 
+        font-size: 14pt;
+        line-height: 17pt;
+        font-weight: bold;  
+        text-transform: uppercase;
+        margin: 0.25em 0 0.5em;
+      }
+
+
+      /*
+      .quote:before { content: '\201C'; }
+      .quote:after { content: '\201D'; }
+      */
+
+      .center {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;  
+        width: 99mm;
+        height: calc(100% + 6mm);
+        margin-top: -3mm;
+        padding: calc(10mm + 3mm) 10mm calc(14mm + 3mm) 10mm; 
+        background: {{{ account.colors.dark-blue }}};
+        font-family: "Bureau Grot Condensed", sans-serif;
+        color: #FEFEFF;
+      }
+
+      .center-main {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        width: 76.5%;
+      }
+
+      .enquiries h2 {  
+        color: #FEFEFF;
+        text-transform: uppercase;
+        font-size: 12pt;
+        line-height: 12pt;
+        font-weight: bold;
+        margin: 0 0 4.5mm 0
+      }
+
+      .line {
+        border-top: 1pt solid white;
+        width: 100%;
+      }
+
+      .enquiry.enquiry {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: normal;
+        font-size: 8pt !important;
+        padding-top: 6pt !important;
+        padding-bottom: 2pt !important;
+        letter-spacing: 0.15px !important;
+      }
+
+      .enquiry:first-child {
+        font-weight: normal;
+        padding-bottom: 2pt !important;
+        letter-spacing: 0.15px !important;
+      }
+
+      .enquiry label {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .enquiry i {
+        display: inline-block;
+        width: 3.96mm;
+        height: 3.96mm;  
+        margin-right: 1.5mm;
+        flex-shrink: 0;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .enquiry.no-icon {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        font-size: 8pt;
+        line-height: 9pt;
+        margin: 0;
+      }
+
+      .enquiry.no-icon label {
+        margin-right: 1mm; 
+      }
+
+      .enquiry.has-icon.enquiry.has-icon {
+        display: flex;
+        align-items: flex-end;
+        margin: 0;
+        line-height: 9pt;
+        padding-top: 2.3pt !important;
+        padding-bottom: 3.5pt !important;
+      }
+
+      .enquiry.has-icon span {
+        font-size: 8pt;
+        line-height: 7.5pt;
+        letter-spacing: 0.2px;
+        margin: 0;
+        padding: 0;
+      }
+
+      i.adelaide { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3412e04b3d494144ddb399f4f0309057/website.svg'); }
+      i.facebook { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f7d0270fe4b54a823c0be9c7e08277e2/facebook.svg'); }
+      i.twitter { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3707beea99b31d7cf1dbefbe6cc54107/twitter.svg'); }
+      i.snapchat { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3841d72df3ce3f80072bfb29f4c03e16/snapchat.svg'); }
+      i.instagram { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/72c56c9b1334af6ae08ccbad2f19f59f/instagram.svg'); }
+      i.wechat { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/52f3543145113d459e2e90c55e1880bd/wechat.svg'); }
+      i.weibo { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/37266b3a414e7a71a6daf9eadb24fd4c/weibo.svg'); }
+
+      .enquiries {
+        margin-bottom: 7pt;
+      }
+
+      .outfit {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: normal;
+        font-size: 6.5pt;
+        margin-bottom: 12pt;
+        letter-spacing: 0.1px; }
+
+      .disclaimer {
+        font-family: "Bureau Grot", sans-serif;
+        font-weight: normal;
+        line-height: 7.5pt;
+        margin-bottom: 18pt;
+        font-size: 6pt;}
+
+      .disclaimer .lead {
+        font-family: "Bureau Grot Condensed", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 8pt;
+        line-height: 7.5pt;
+      }
+
+      .logo-south {
+        width: 66pt;
+        height: 24pt;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/66e8c370d53f798fcd65e95454df0e61/logo-south.svg');
+        background-position: bottom left;
+      }
+
+      .right {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 99mm;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding: 5mm;
+      }
+
+      .hero-image {
+        position: relative;
+        width: 100%;
+        height: 343pt;
+      }
+
+      .overlay {
+        background: rgba(167,169,172, 0.8);
+        mix-blend-mode: multiply;
+      }
+
+      .overlay.overlay-top-left {
+        clip-path: polygon(0 0, 100% 0, 100% 35mm, 18.5% 35mm, 18.5% 100%, 0 100%);  
+      }
+
+      .overlay.overlay-top-right {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 81.5% 100%, 81.5% 35mm, 0 35mm);
+      }
+
+      .overlay.overlay-bottom-right {
+        clip-path: polygon(calc(100% - 12mm) 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 20mm), calc(100% - 12mm) calc(100% - 20mm), calc(100% - 12mm) 0);
+      }
+
+      .overlay.overlay-bottom-left {
+        clip-path: polygon(0 0, 12mm 0, 12mm 80mm, 100% 80mm, 100% 100%, 0 100%);
+      } 
+
+      .logo {
+        width: 80pt;
+        height: 60pt;
+        position: absolute;
+        top: 5mm;
+        left: 16pt;
+        z-index: 2;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg');  
+      }
+
+      .logo.logo-black {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f51d18f3be6ad6a13b1bc40750f9201a/adelaide-logo-black.svg');
+      }
+
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 7mm 1mm;
+      }
+
+      .header {
+        max-height: 3.2em;
+      }
+
+      .subhead {  
+        color: {{{account.colors.primary }}};
+        font-family: "Plantin MT Std", sans-serif;
+        max-height: 3.6em;
+        padding: 0;
+        position: relative;
+        display: inline;
+        /* background: linear-gradient(0deg, rgba(255,255,255,1) 19%, rgba(212,0,0,1) 19%, rgba(212,0,0,1) 24%, rgba(255,255,255,1) 24%); */
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .url {
+        position: absolute;
+        bottom: 20pt;
+        font-size: 17pt;
+        letter-spacing: -0.02em;
+        color: {{{ account.colors.dark-blue }}};
+        margin: auto 0 0;
+        line-height: 0.8em;
+      }
+
+      /** Spread */
+      .back-page-columns {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        padding: 17mm 10mm 14mm 10mm;
+        width: 100%;
+      }
+
+      .back-page-columns .box-inner {  
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        -webkit-columns: 3;
+        columns: 3;
+        -moz-columns: 3;
+        -webkit-column-fill: auto;
+        column-fill: auto;
+        column-gap: 22mm;
+        height: 100%;
+      }
+
+      .columns-check {
+        max-height: 2028px;
+        overflow: hidden;
+      }
+
+      .left-main.text-overflow {
+        max-height: 677px;
+      }
+
+      .left .intro-text, .box-inner .intro-text {
+        font-size: 16pt !important;
+        line-height: 19pt !important;
+        margin: 0 !important;
+        padding: 0 0 11mm 0 !important;
+      }
+
+      .left h1, .box-inner h1 {
+        font-size: 39pt !important;
+        line-height: 36pt !important;
+        margin: 0 !important;
+        padding: 0 0 3mm 0 !important;
+      }
+
+      .left h2, .box-inner h2 {
+        font-size: 10.5pt;
+        line-height: 12pt;
+        margin: 0;
+        padding: 2mm 0 1.5mm 0;
+      }
+
+      .left h3, .box-inner h3 {
+        font-size: 9pt !important;
+        line-height: 10.5pt !important;
+        margin: 0 !important;
+        padding: 1.5mm 0 !important;
+      }
+
+      .left h4, .box-inner h4 {
+        font-size: 7.5pt !important;
+        line-height: 9pt !important;
+        margin: 0 !important;
+        padding: 1mm 0 1.5mm 0 !important;
+      }
+
+      p {
+        font-size: 8.5pt;
+        line-height: 10pt;
+        margin: 0;
+        padding: 0 0 1.5mm 0;
+      }
+
+      table { margin: 0 !important; }
+
+      .table-name {
+        font-size: 14pt !important;
+        line-height: 17pt !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+        color: {{{ account.colors.dark-blue }}} !important;
+        border-bottom: solid 2pt !important;
+        margin: 0 !important;
+        padding: 3pt 0 !important;
+      }
+      .table-head {
+        font-size: 12pt !important;
+        line-height: 17pt !important;
+        font-weight: bold !important;
+        color: {{{ account.colors.dark-blue }}} !important;
+        margin: 0 !important;
+        padding: 2pt 2pt 0 6pt !important;
+      }
+
+      /* Caption Additions 02/12/18 - LM */
+      .caption {
+        margin: 4mm 0 7mm 0; 
+      }
+      .caption__text {
+        font-size: 7.5pt; 
+        font-style: italic;
+        padding: 0; 
+        line-height: 8.5pt;
+      }   
+
+      .left-main a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+
+      .back-page-columns a {
+        color: {{{account.colors.primary}}} !important;
+        text-decoration: underline !important;
+        font-weight: normal;
+      }
+      
+      .enquiries a {
+        font-weight: normal;
+      }
+      
+      .subhead-position{
+        line-height:11pt !important;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="page front">
+      <div class="bleed">
+
+        <div class="fit">
+          <!--<div class="test"></div>-->
+          <div class="wrapper">
+            <div class="left">
+              <div class="left-border">
+                <div class="left-main text-overflow">
+                  {{#collection.outside-page-content}}
+
+                  {{#block.text-section}}
+                  {{{ text }}}
+                  {{/block.text-section}}
+
+                  {{#block.image-section}}
+                  {{#image-no-reposition}}
+                  <div style="width: 100%; margin: 10pt 0;">
+                    <img src="{{{ image-no-reposition }}}">
+                  </div>
+                  {{/image-no-reposition}}
+                  {{#caption}}
+                  <div class="caption">
+                    <p class="caption__text text-overflow" data-limit="35">{{{caption}}}</p>
+                  </div>
+                  {{/caption}}
+                  {{/block.image-section}}
+
+                  {{#block.quote-section}}
+                  <div class="quote-section">
+                    <div class="quote">{{{ quote }}}</div>
+                    {{#quote-name}}<p>{{{ quote-name }}}, {{#qualification}}<em>{{{ qualification }}}</em>{{/qualification}}</p>{{/quote-name}}
+                  </div>
+                  {{/block.quote-section}}
+
+                  {{#block.table-section}}
+                  <h2 class="table-name">{{{ table-name }}}</h2>
+                  <table>  
+                    <tr>
+                      {{#table-head-1}}<th class="table-head">{{{ table-head-1 }}}</th>{{/table-head-1}}
+                      {{#table-head-2}}<th class="table-head">{{{ table-head-2 }}}</th>{{/table-head-2}}
+                    </tr>
+                    {{#spreadsheet.uoa-dl-table}}
+                    <tr>
+                      <td>{{{ copy-1 }}}</td>
+                      <td>{{{ copy-2 }}}</td>
+                    </tr>
+                    {{/spreadsheet.uoa-dl-table}}
+                  </table>
+                  {{/block.table-section}}
+
+                  {{/collection.outside-page-content}}
+                  {{^collection.outside-page-content}}
+                  <h2>Heading 2</h2>
+                  <h3>Heading 3</h3>
+                  <h4>Heading 4</h4>
+                  <p>Body copy</p>
+                  <ul>
+                    <li>Body bullets</li>
+                  </ul>
+                  <div class="quote-section">
+                    <div class="quote">It's good..</div>
+                    <p>Moon, <em>Developer</em></p>
+                  </div>
+                  <h2 class="table-name">Table heading 1</h2>
+                  <table>                      
+                    <tr>
+                      <th class="table-head">Heading 2</th>
+                      <th class="table-head">Heading 2</th>
+                    </tr>
+                    <tr>
+                      <td>Copy Text</td>
+                      <td>Copy Text</td>
+                    </tr>
+                    <tr>
+                      <td>Copy Text</td>
+                      <td>Copy Text</td>
+                    </tr>
+                    <tr>
+                      <td>Copy Text</td>
+                      <td>Copy Text</td>
+                    </tr>
+                  </table>
+                  {{/collection.outside-page-content}}
+                </div>                             
+              </div>
+            </div>
+            <div class="center">
+              <div class="center-main">
+                <div class="enquiries">
+                  <h2>{{{ table-name }}}</h2>
+                  {{#collection.further-information-collection}}
+                  {{#address}}
+                  <p class="enquiry">                        
+                    <span>{{{ address }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/address}}
+
+                  {{#enquiries}}
+                  <p class="enquiry">       
+                    <label>Enquiries</label>
+                    <span>{{{ enquiries }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/enquiries}}
+
+                  {{#telephone}}
+                  <p class="enquiry">       
+                    <label>Telephone</label>
+                    <span>{{{ telephone }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/telephone}}
+
+                  {{#free-call}}
+                  <p class="enquiry">       
+                    <label>Free Call</label>
+                    <span>{{{ free-call }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/free-call}}
+
+                  {{#adelaide}}
+                  <p class="enquiry has-icon">
+                    <i class="adelaide"></i>
+                    <span>{{{ adelaide }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/adelaide}}
+
+                  {{#facebook}}
+                  <p class="enquiry has-icon">
+                    <i class="facebook"></i>
+                    <span>{{{ facebook }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/facebook}}
+
+                  {{#twitter}}
+                  <p class="enquiry has-icon">
+                    <i class="twitter"></i>
+                    <span>{{{ twitter }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/twitter}}
+
+                  {{#snapchat}}
+                  <p class="enquiry has-icon">
+                    <i class="snapchat"></i>
+                    <span>{{{ snapchat }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/snapchat}}
+
+                  {{#instagram}}
+                  <p class="enquiry has-icon">
+                    <i class="instagram"></i>
+                    <span>{{{ instagram }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/instagram}}
+
+                  {{#wechat}}
+                  <p class="enquiry has-icon">
+                    <i class="wechat"></i>
+                    <span>{{{ wechat }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/wechat}}
+
+                  {{#weibo}}
+                  <p class="enquiry has-icon">
+                    <i class="weibo"></i>
+                    <span>{{{ weibo }}}</span>
+                  </p>
+                  <div class="line"></div>   
+                  {{/weibo}}
+
+                  {{/collection.further-information-collection}}
+                </div>
+                <div class="outfit">
+                  © The University of Adelaide. Published <span id="month"></span> <span id="year"></span> {{{ cricos }}} Outfit Job No: <span data-project-code></span>
+                </div>
+                {{#disclaimer-toggle}}
+                <div class="disclaimer">
+                  <span class="lead">Disclaimer</span> The information in the publications is current
+                  as at the date of printing and is subject to change. You can find updated information
+                  on our website at <strong>{{{ disclaimer-url }}}</strong> or contact us on 1800 061 459. The University
+                  of Adelaide assumes no responsibility for the accuracy of information provided by third parties.
+                </div>
+                {{/disclaimer-toggle}}
+                <div class="logo-south contain"></div>
+              </div>           
+            </div>
+            <div class="right">
+              <div class="hero-image image-container">
+                {{{hero-image}}}
+                <div class="fit overlay overlay-{{ brochure-hero-image-overlay }}"></div>
+                <div class="logo logo-{{logo-color}}{{^logo-color}}white{{/logo-color}} contain"></div>
+              </div>
+              <div class="main">
+                <div class="main-guide">
+                  <h1 class="header text-overflow" style="font-size: {{{ header-font-size }}}pt;">{{{ header }}}</h1>
+                  <div class="subhead-position"><h2 class="subhead text-overflow" style="font-size: {{{ subhead-font-size }}}pt;">{{{ subhead }}}</h2></div>
+                </div>
+                {{#url}}<h3 class="url">{{{url}}}</h3>{{/url}}{{^url}}<h3 class="url">adelaide.edu.au</h3>{{/url}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page spread">
+      <div class="bleed">
+
+        <div class="line-1"></div>
+        <div class="line-2"></div>
+        <div class="line-3"></div>
+        <div class="line-4"></div>
+        <div class="line-5"></div>
+        <div class="line-6"></div>
+        <div class="line-7"></div>
+        <div class="line-8"></div>
+
+        <div class="fit">
+          <!--<div class="test-2"></div>-->
+          <div class="wrapper">
+
+            <div class="back-page-columns">
+              <div class="box-inner">
+                <div class="text-overflow columns-check">
+                  {{#collection.back-page-columns}}
+
+                  {{#block.text-section}}
+                  {{{ text }}}
+                  {{/block.text-section}}
+
+                  {{#block.image-section}}
+                  {{#image-no-reposition}}
+                  <div style="width: 100%; margin: 10pt 0;">
+                    <img src="{{{ image-no-reposition }}}">
+                  </div>
+                  {{/image-no-reposition}}
+                  {{#caption}}
+                  <div class="caption">
+                    <p class="caption__text text-overflow" data-limit="35">{{{caption}}}</p>
+                  </div>
+                  {{/caption}}
+                  {{/block.image-section}}
+
+                  {{#block.quote-section}}
+                  <div class="quote-section">
+                    <div class="quote">{{{ quote }}}</div>
+                    {{#quote-name}}<p>{{{ quote-name }}}, {{#qualification}}<em>{{{ qualification }}}</em>{{/qualification}}</p>{{/quote-name}}
+                  </div>
+                  {{/block.quote-section}}
+
+                  {{#block.table-section}}
+                  <h2 class="table-name">{{{ table-name }}}</h2>
+                  <table>       
+                    <tr>
+                      {{#table-head-1}}<th class="table-head">{{{ table-head-1 }}}</th>{{/table-head-1}}
+                      {{#table-head-2}}<th class="table-head">{{{ table-head-2 }}}</th>{{/table-head-2}}
+                    </tr>
+                    {{#spreadsheet.uoa-dl-table}}
+                    <tr>
+                      <td>{{{ copy-1 }}}</td>
+                      <td>{{{ copy-2 }}}</td>
+                    </tr>
+                    {{/spreadsheet.uoa-dl-table}}
+                  </table>
+                  {{/block.table-section}}
+
+                  {{/collection.back-page-columns}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute;" src="'+cropImage+'" class="foldMark1">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute;" src="'+cropImage+'" class="foldMark2">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute;" src="'+cropImage+'" class="foldMark3">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute;" src="'+cropImage+'" class="foldMark4">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed){
+        bleed.style.cssText = !!window.showCrop ?
+          'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        :
+        'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+      });
+
+      function checkLimitedText() {
+        Array.prototype.slice.call(document.querySelectorAll('.text-overflow'))
+          .forEach(function(e) {
+          const height = $(e).height();          	
+          const maxHeight = $(e).data('limit') 
+          ? parseFloat($(e).data('limit'))
+          : $(e).css('max-height');
+
+          $(e)
+            .css('max-height', 'none')
+            .attr('data-limit', maxHeight);
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function checkLimitedBox() {
+        Array.prototype.slice.call(document.querySelectorAll('.box-overflow'))
+          .forEach(function(e) {
+          const maxHeight = $(e).height() + 2;
+          const height = $(e).children('.box-inner').outerHeight();
+
+          if (height > maxHeight) {
+            e.classList.add("overflow");
+          } else {
+            e.classList.remove("overflow");
+          }
+        });
+      }
+
+      function loop() {
+        checkLimitedText();
+        checkLimitedBox();
+      } setInterval(loop, 1000);
+
+
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+                          "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+                         ];
+
+      var m = new Date();
+      document.getElementById('month').innerHTML = (monthNames[m.getMonth()])
+
+      var y = new Date();
+      document.getElementById('year').innerHTML = y.getFullYear();
+    </script>
+
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/projectCode.1.0.0.js"></script>
+    <script>window.setProjectCode('[ID]');</script> 
+  </body>
+</html>

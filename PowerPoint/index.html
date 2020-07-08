@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html data-sign="OSB">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="placeholder-controller.css">
+
+    <style>
+
+      @import url(https://outfit-assets-production.s3.amazonaws.com/fonts/Plantin/stylesheet.css);
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot%20Condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Bureau%20Grot/stylesheet.css');
+
+      html {
+        font-family: 'Plantin MT Std';
+        font-size: 11pt;
+        color: #fff;
+      }
+
+      .overflow {
+        border: none;
+        box-shadow: 0 0 0 0.0362rem red;
+        background: rgba(255, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;}
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 0.1rem;
+        right: 0.1rem;
+        height: .3107rem;
+        width: .3107rem;
+        border: 0.01rem solid red;
+        color: red;
+        padding: 0.01rem 0.01rem 0.01rem 0.0155rem;
+        box-sizing: border-box;
+        font-size: 0.2279rem;
+        text-align: center;
+        line-height: .2693rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 0.5rem;
+        right:  0.1rem;
+        background-color: black;
+        color: white;
+        border-radius: 0.01rem;
+        padding: 0.2rem 0.2rem;        
+        box-sizing: border-box;
+        font-size: 0.35rem;
+        font-weight: 400;     
+        text-align: right;
+        width: 6rem;
+        line-height: 0.45rem;
+      }
+
+      .overflow[data-char-limit]:hover:after {
+        content: 'Character limit exceeded';        
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        padding: 20.3pt 45pt 14pt 45pt;
+        background: #fff;
+      }
+
+      .fit--2Column,
+      .fit--1Column,
+      .fit--2ColumnWImage,
+      .fit--fullImage {
+        color: #102535;
+      }
+
+      .fit--Column {
+        padding-top: 15pt;
+      }
+
+      .fit--2ColumnWImage {
+        padding: 15pt 50.8pt 19pt 38.8pt;
+      }
+
+      .fit--fullImage {
+        padding: 47.3pt 45pt 10pt 45pt;
+      }
+
+      .fit--end {
+        background: #102535;
+        justify-content: flex-end;
+        padding-bottom: 11.5mm;
+      }
+
+      .backgroundImage,
+      .frame {
+        position: relative;
+        /*top: 12.9pt;
+        left: 13.4pt;
+        right: 13.7pt;
+        bottom: 16.8pt;  */ 
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .backgroundImage {
+        overflow: hidden;
+      }
+      .backgroundImage{
+        position: absolute;
+        top: 21.9pt;
+        left: 21.9pt;
+        right: 21.9pt;
+        bottom: 21.9pt;
+        
+      }
+
+      .frame {
+        background: rgba(167,169,172, 0.8);
+        mix-blend-mode: multiply; 
+      }
+
+      .frame--topLeft{
+        clip-path: polygon(0 0, 100% 0, 100% 13.4%, 24.3% 13.4%, 24.3% 100% ,0 100%);
+      }
+
+      .frame--topRight {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 75.7% 100%, 75.7% 13.4% ,0 13.4%);
+      }
+
+      .frame--bottomRight {
+        clip-path: polygon(100% 0, 75.7% 0, 75.7% 86.6%, 0 86.6%, 0% 100%, 100% 100%);
+      }
+
+      .frame--bottomLeft {  
+        clip-path: polygon(0 0, 24.3% 0, 24.3% 86.6%, 100% 86.6%, 100% 100%, 0 100%);
+      }
+
+      .logo {
+        display: none;
+        position: absolute;
+        left: 41pt;
+        top: 40pt;
+        width: 118pt;
+      }
+
+      .show--logoWhite .logo--white,
+      .show--logoBlack .logo--black {
+        display: block;
+      }
+
+      .logo--secondary {
+        display: block;
+        top: 23.2%;
+        left: 50%;
+        width: 278.8pt;
+        transform: translatex(-50%);
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        position: absolute;
+        bottom: 17pt;
+        left: 13.6pt;
+        right: 14pt;
+        padding: 0pt 27pt 19pt 27pt;
+      }
+
+      .heading {
+        margin-top: 34pt;
+        font-family: 'Bureau Grot Condensed';
+        text-transform: uppercase;
+        font-size: 48pt;
+        font-weight: bold;
+      }
+
+      .heading h1 {
+        font-weight: bold;
+        line-height: 0.9em;
+      }
+
+      .subheading {
+        font-family: 'Plantin MT Std';
+        font-size: 26pt;
+      }
+
+      .subheading h2 {
+        line-height: 1em;
+      }
+
+      .url {
+        margin-top: 40pt;
+        font-family: 'Bureau Grot Condensed';
+        font-size: 28pt;
+        font-weight: bold;
+      }
+
+      .url p {
+        line-height: 1em;
+      }
+
+      .url a {
+        line-height: 1em;
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .body {
+        flex: 1;
+      }
+
+      .body__inner {
+        max-height: 14.6rem;
+      }
+
+      .fit--fullImage .body {
+        position: relative;
+        margin-bottom: 14pt;
+        overflow: hidden;
+      }
+
+      .heading--secondary {
+        margin: auto;
+        margin-bottom: 40pt;
+        padding-top: 33pt;
+        font-size: 37.1pt;
+      }
+
+      .column__container {
+        display: flex;
+      }
+
+      .column {
+        padding-right: 45pt;
+        flex: 1;
+        font-family: 'Bureau Grot Condensed';
+      }
+
+      .fit--2ColumnWImage .column {
+        padding-right: 0;
+      }
+      
+      h6 {
+        font-family: 'Plantin MT Std';
+        font-style: italic;
+      }
+      
+
+      .column h1 {
+        margin-bottom: 6pt;
+        font-size: 27.3pt;
+        font-weight: bold;
+      }
+
+      .column h2 {
+        margin-bottom: 14pt;
+        font-size: 23.9pt;
+        color: #005A9C;
+        font-weight: bold;
+      }
+
+      .column p,
+      .column li {
+        margin-bottom: 14pt;
+        font-family: 'Plantin MT Std';        
+        font-size: 20pt;
+        line-height: 24pt;
+      }
+
+      .column li {
+        position: relative;
+        margin-left: 12pt;
+      }
+
+      .column li:before {
+        content: '.';
+        position: absolute;
+        top: -7.9pt;
+        left: -12.1pt;
+        font-family: 'Plantin MT Std';
+        font-size: 26pt;
+        color: #d40000;
+      }
+
+      .column ul {
+        margin-bottom: 20pt;
+      }
+
+      .column h6 {
+        font-size: 15pt;
+        margin-bottom: 14pt;
+      }
+
+      .column a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .column--secondary {
+        padding-left: 32pt;
+      }
+
+      .fit--2ColumnWImage .column--secondary {
+        position: relative;
+        height: 336pt;
+        margin-left: 67pt;
+        overflow: hidden;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 9pt;
+        font-family: 'Bureau Grot';
+        font-family: 'Plantin MT Std';
+        font-size: 12pt;
+        border-top: 4pt solid #d40000;
+        margin-bottom: 4px;
+      }
+
+      .footer__copy {
+        max-width: 551pt;
+        line-height: 1em;
+      }
+
+      .footer__copy p {
+        display: inline;
+      }
+
+      .cricos {
+        /*position: absolute;*/
+        /*bottom: 26pt;*/
+        /*left: 270pt;*/
+        font-size: 13pt;
+        font-weight: 500;
+        text-align: center;
+        text-transform: uppercase;       
+        color: #818c96;
+        font-family: 'Bureau Grot Condensed';
+      }
+
+      .master {
+        display: none;
+      }
+      
+      .background__frame {
+        position: absolute;
+        top: 22.8pt;
+        left: 22.3pt;
+        right: 22.3pt;
+        bottom: 22.8pt;
+      }
+      
+      .background__frame__container{
+        position: absolute;
+        top: 21.9pt;
+        left: 21.9pt;
+        right: 21.9pt;
+        bottom: 21.9pt;
+        
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: no-wrap;
+        
+      }
+      
+      .box1, .box2{
+        position: relative;
+        background: rgba(167,169,172, 0.8);
+        mix-blend-mode: multiply;
+      }
+      
+      .background__frame--frame--topLeft .box1{
+        width: 80mm;
+        height: 181mm;
+      }
+
+      .background__frame--frame--topLeft .box2{
+        width: calc(100% - 95.5mm);
+        height: 25mm;
+      }
+      
+      .background__frame--frame--topRight .box1{
+        width: calc(100% - 34mm);
+        height: 48mm;
+      }
+
+      .background__frame--frame--topRight .box2{
+        width: 41mm;
+        height: 181mm;
+        margin-right: 9.5mm;
+      }
+      
+      .background__frame--frame--bottomRight .box1{
+        width: calc(100% - 76mm);
+        height: 25mm;
+        top: 156mm;
+      }
+
+      .background__frame--frame--bottomRight .box2{
+        width: 60.5mm;
+        height: 181mm;
+      }
+      
+      .background__frame--frame--bottomLeft .box1{
+        width: 61mm;
+    	height: 181mm;
+      }
+
+      .background__frame--frame--bottomLeft .box2{
+        top: 156mm;
+        width: calc(100% - 76.5mm);
+        height: 25mm;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle }}{{^placeholder-toggle}}hide{{/placeholder-toggle}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+
+    <div class="master" data-cricos="{{{ UOA_cricos--sd }}}"></div> 
+
+    {{#collection.UOA_slide-deck--sd}}
+    {{#block.UOA_slide-deck-cover--sd}}
+    <div class="page">
+
+      <div class="bleed center-children">
+		
+        <div class="container fit fit--cover">
+		  <div class="backgroundElements">
+            <div class="backgroundImage"> 
+              {{{ UOA_background-image--sd }}}
+            </div><!-- backgroundImage -->
+            <!--<div class="frame {{{ UOA_frame-border--sd }}} {{^UOA_frame-border--sd}} frame--bottomLeft {{/UOA_frame-border--sd}}">-->
+            <div class="background__frame__container background__frame--{{ UOA_frame-border--sd }}"><div class="box1"></div><div class="box2"></div></div>
+          </div>
+            
+            
+          </div> <!-- frame -->
+          <div class="logo__container {{{ UOA_logo-choice--sd }}} {{^UOA_logo-choice--sd}} show--logoWhite {{/UOA_logo-choice--sd}}">
+            <img src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f51d18f3be6ad6a13b1bc40750f9201a/adelaide-logo-black.svg" class="logo logo--black" /> <!-- logo -->
+            <img src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58c42af31a9d253e14a079db30141230/adelaide-logo-white.svg" class="logo logo--white" /> <!-- logo -->
+          </div> <!-- logo__container -->
+          <div class="content">
+            <div class="subheading" data-max-line="1"> 
+              {{{ UOA_subheading--sd }}}
+            </div> <!-- subheading -->
+            <div class="heading" data-max-line="2"> 
+              {{{ UOA_header--sd }}}
+            </div> <!-- heading -->
+            <div class="url" data-max-line="1"> 
+              {{{ UOA_url--sd }}}
+            </div> <!-- url -->
+          </div> <!-- content -->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.UOA_slide-deck-cover--sd}}
+    {{#block.UOA_2-column-layout-page--sd}}
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit fit--2Column">
+
+          <div class="body">
+            <div class="body__inner">
+              <div class="check-overflow">
+                <div class="heading heading--secondary" data-max-height="200">
+                  {{{ UOA_header--sd }}}
+                </div> <!-- heading--secondary -->
+                <div class="column__container">
+                  <div class="column">
+                    {{{ UOA_column-1-body--sd }}}
+                  </div><!-- column -->
+                  <div class="column column--secondary">
+                    {{{ UOA_column-2-body--sd }}}
+                  </div><!-- column -->
+                </div> <!-- column__container -->
+              </div> <!-- check-overflow -->
+            </div> <!-- body__inner -->
+          </div> <!-- body -->
+          <div class="footer">
+            <div class="footer__copy" data-max-line="1">
+              The University of Adelaide{{ #UOA_footer-copy--sd }} - {{{ UOA_footer-copy--sd }}}{{ /UOA_footer-copy--sd }}
+            </div> <!-- footer__copy -->
+            <div class="footer__page">
+              Slide: <span class="js-slide"></span>
+            </div> <!-- footer__page -->
+          </div> <!-- footer -->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.UOA_2-column-layout-page--sd}}
+    {{#block.UOA_1-column-layout-page--sd}}
+    <div class="page">
+          <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+
+      <div class="bleed center-children">
+
+        <div class="container fit fit--1Column">
+
+          <div class="body">
+            <div class="body__inner">
+              <div class="check-overflow">
+                <div class="heading heading--secondary" data-max-height="200">
+                  {{{ UOA_header--sd }}}
+                </div> <!-- heading--secondary -->
+                <div class="column__container">
+                  <div class="column">
+                    {{{ UOA_column-1-body--sd }}}
+                  </div><!-- column -->
+                </div> <!-- column__container -->
+              </div> <!-- check-overflow -->
+            </div> <!-- body__inner -->
+          </div> <!-- body -->
+          <div class="footer">
+            <div class="footer__copy" data-max-line="1">
+              The University of Adelaide{{ #UOA_footer-copy--sd }} - {{{ UOA_footer-copy--sd }}}{{ /UOA_footer-copy--sd }}
+            </div> <!-- footer__copy -->
+            <div class="footer__page">
+              Slide: <span class="js-slide"></span>
+            </div> <!-- footer__page -->
+          </div> <!-- footer -->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.UOA_1-column-layout-page--sd}}
+    {{#block.UOA_2-column-with-image--sd}}
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit fit--2ColumnWImage">
+
+          <div class="body">
+            <div class="body__inner">
+              <div class="check-overflow">
+                <div class="heading heading--secondary" data-max-height="200">
+                  {{{ UOA_header--sd }}}
+                </div> <!-- heading--secondary -->
+                <div class="column__container">
+                  <div class="column">
+                    {{{ UOA_column-1-body--sd }}}
+                  </div><!-- column -->
+                  <div class="column column--secondary">
+                    {{{ UOA_support-image--sd }}}
+                  </div><!-- column -->
+                </div> <!-- column__container -->
+              </div> <!-- check-overflow -->
+            </div> <!-- body__inner -->
+          </div> <!-- body -->
+          <div class="footer">
+            <div class="footer__copy" data-max-line="1">
+              The University of Adelaide{{ #UOA_footer-copy--sd }} - {{{ UOA_footer-copy--sd }}}{{ /UOA_footer-copy--sd }}
+            </div> <!-- footer__copy -->
+            <div class="footer__page">
+              Slide: <span class="js-slide"></span>
+            </div> <!-- footer__page -->
+          </div> <!-- footer -->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.UOA_2-column-with-image--sd}}
+    {{#block.UOA_full-image--sd}}
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit fit--fullImage">
+
+          <div class="body">
+            {{{ UOA_full-image--sd }}}
+          </div> <!-- body -->
+          <div class="footer" style="margin-bottom: 16px;">
+            <div class="footer__copy" data-max-line="1">
+              The University of Adelaide{{ #UOA_footer-copy--sd }} - {{{ UOA_footer-copy--sd }}}{{ /UOA_footer-copy--sd }}
+            </div> <!-- footer__copy -->
+            <div class="footer__page">
+              Slide: <span class="js-slide"></span>
+            </div> <!-- footer__page -->
+          </div> <!-- footer -->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.UOA_full-image--sd}}
+    {{#block.UOA_end-page--sd}}
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit fit--end">
+
+          <img src="{{{account.logos.stacked-no-keyline}}}" class="logo logo--secondary" /> <!-- logo -->
+          <div class="cricos">
+            cricos provider number <span class="js-cricos"></span>
+          </div><!-- cricos -->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.UOA_end-page--sd}}
+    {{/collection.UOA_slide-deck--sd}}
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+    </script>
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+    <script src="placeholder-controller.js"></script>
+    <script src="char-limit.js"></script>
+    <script src="check-export-mode.js"></script>
+    <script src="check-height.js"></script>    
+    <script src="max-line-check.js"></script>    
+    <script src="max-height-check.js"></script>    
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+    <script>
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if (window.showCrop === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          checkHeight(document.getElementsByClassName('check-overflow')); 
+          maxLineCheck(); 
+          maxHeightCheck(); 
+        });
+      });    
+
+      const maxLineChecks = document.querySelectorAll('[data-max-line]');
+      const maxHeightChecks = document.querySelectorAll('[data-max-height]');
+      const checkOverflows = document.querySelectorAll('.check-overflow');
+
+      if ( maxLineChecks.length !== 0) {
+        maxLineChecks.forEach(maxLineCheck => {
+          overflowObserver.observe(maxLineCheck, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });
+      }
+
+      if ( maxHeightChecks.length !== 0) {
+        maxHeightChecks.forEach(maxHeightCheck => {
+          overflowObserver.observe(maxHeightCheck, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });
+      }      
+
+      if ( checkOverflows.length !== 0) {      
+        checkOverflows.forEach(checkOverflow => {
+          overflowObserver.observe(checkOverflow, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });      
+      }
+
+      function injectSideNum() {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach((page, index) => {
+          if ( page.querySelector('.js-slide') !== null ) {
+            page.querySelector('.js-slide').innerText = index + 1;            
+          }
+        })
+      }
+
+      function injectCricos() {
+        const master = document.querySelector('.master');
+        const fitEnd = document.querySelector('.fit--end');
+        fitEnd.querySelector('.js-cricos').innerText = master.dataset.cricos;
+      }
+
+      placeholderController();
+      injectSideNum();
+      injectCricos();
+      checkCrop();  
+      checkExport(); 
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      /*
+      TextFit.fit({
+        selector: '.textFit'
+      });      
+      */
+
+    </script>
+
+
+  </body>
+</html>
